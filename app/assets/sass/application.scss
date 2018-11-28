@@ -14,3 +14,53 @@ $govuk-global-styles: true;
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.govuk-header {
+    background-color: #252525;
+    border-bottom: 4px solid #74c044;
+    position: relative;
+    &::before {
+        content: "";
+        background: #17b15a;
+        bottom: 5px;
+        display: block;
+        height: 5px;
+        left: 0;
+        position: absolute;
+        right: 0;
+    }
+    &::after {
+        content: "";
+        background: #9bcf80;
+        bottom: -11px;
+        display: block;
+        height: 3px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+}
+.govuk-header__container {
+    background-color: none;
+    border-bottom: none;
+    padding: 0;
+}
+.govuk-header__logotype-crown {
+    display: none;
+} 
+.govuk-header__logotype-text {
+    display: none;
+}
+.govuk-header__link--homepage {
+    display: block;
+}
+.govuk-header__logo {
+    padding: 2em 0 2em;
+}
+.govuk-header__logotype {
+    background: url('../images/hackney_logo_white.png') no-repeat;
+    width: 100%;
+    height: 63px;
+    background-size: contain;
+    display: block;
+}
