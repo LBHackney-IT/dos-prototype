@@ -1,5 +1,69 @@
 {% extends "layout_hackney.html" %}
+{% from "table/macro.njk" import govukTable %}
+
+{% set operations = '<a href="#" class="govuk-link">Edit</a>' %}
 
 {% block content %}
-    <p>{{ message }}.</p>
+<h1 class="govuk-heading-xl">Service information listing</h1>
+{{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Type"
+    },
+    {
+        text: "Last updated"
+    },
+    {
+        text: "Operations"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Clapton Park advice session"
+      },
+      {
+        text: "Community group"
+      },
+      {
+        text: "13:56 11/01/2018"
+      },
+      {
+        html: operations
+      }
+    ],
+    [
+      {
+        text: "Bikur Cholim"
+      },
+      {
+        text: "Private limited company"
+      },
+      {
+        text: "12:14 13/02/2017"
+      },
+      {
+        html: operations
+      }
+    ],
+    [
+      {
+        text: "Peter Bedford Housing Association"
+      },
+      {
+        text: "Housing association"
+      },
+      {
+        text: "08:36 27/02/2016"
+      },
+      {
+        html: operations
+      }
+    ]
+  ]
+}) }}
 {% endblock %}
