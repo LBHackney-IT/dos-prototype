@@ -1,9 +1,9 @@
 {% extends "layout_hackney.html" %}
 {% from "table/macro.njk" import govukTable %}
 
-{% set editLink = '<a href="#" class="govuk-link">Edit</a>' %}
-{% set outofdateLink = '<a href="#" class="govuk-link">View out of date information</a>' %}
-{% set updateLink = '<a href="#" class="govuk-link">View submission</a>' %}
+{% set editLink = '<a href="/data-listing/0/edit" class="govuk-link">Edit</a>' %}
+{% set outofdateLink = '<a href="/data-listing/0/out-of-date" class="govuk-link">View out of date information</a>' %}
+{% set updateLink = '<a href="/data-listing/0/update" class="govuk-link">View update</a>' %}
 
 {% set dangerActions = [editLink, outofdateLink] | join('<br />')  %}
 {% set updateActions = [editLink, updateLink] | join('<br />')  %}
