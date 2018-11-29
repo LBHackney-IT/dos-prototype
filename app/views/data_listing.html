@@ -1,7 +1,12 @@
 {% extends "layout_hackney.html" %}
 {% from "table/macro.njk" import govukTable %}
 
-{% set operations = '<a href="#" class="govuk-link">Edit</a>' %}
+{% set editLink = '<a href="#" class="govuk-link">Edit</a>' %}
+{% set outofdateLink = '<a href="#" class="govuk-link">View out of date information</a>' %}
+{% set updateLink = '<a href="#" class="govuk-link">View submission</a>' %}
+
+{% set dangerActions = [editLink, outofdateLink] | join('<br />')  %}
+{% set updateActions = [editLink, updateLink] | join('<br />')  %}
 
 {% block content %}
 <h1 class="govuk-heading-xl">Service information listing</h1>
@@ -12,13 +17,16 @@
       text: "Name"
     },
     {
+      text: "Status"
+    },
+    {
       text: "Type"
     },
     {
         text: "Last updated"
     },
     {
-        text: "Operations"
+        text: "Actions"
     }
   ],
   rows: [
@@ -27,18 +35,24 @@
         text: "Clapton Park advice session"
       },
       {
+        html: "<strong class='govuk-tag hackit-tag--mundane'>Up to date</strong>"
+      },
+      {
         text: "Community group"
       },
       {
         text: "13:56 11/01/2018"
       },
       {
-        html: operations
+        html: editLink
       }
     ],
     [
       {
         text: "Bikur Cholim"
+      },
+      {
+        html: "<strong class='govuk-tag hackit-tag--danger'>Out of date</strong>"
       },
       {
         text: "Private limited company"
@@ -47,12 +61,15 @@
         text: "12:14 13/02/2017"
       },
       {
-        html: operations
+        html: dangerActions
       }
     ],
     [
       {
         text: "Peter Bedford Housing Association"
+      },
+      {
+        html: "<strong class='govuk-tag hackit-tag--attention-required'>Update submitted</strong>"
       },
       {
         text: "Housing association"
@@ -61,7 +78,7 @@
         text: "08:36 27/02/2016"
       },
       {
-        html: operations
+        html: updateActions
       }
     ]
   ]

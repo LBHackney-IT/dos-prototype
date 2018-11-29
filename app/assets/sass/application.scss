@@ -64,3 +64,13 @@ $govuk-global-styles: true;
     background-size: contain;
     display: block;
 }
+
+.hackit-tag--danger {
+    background-color: $govuk-error-colour;
+}
+.hackit-tag--mundane {
+    background-color: govuk-colour("grey-1");
+}
+.hackit-tag--attention-required {
+    background-color: govuk-colour("blue");
+}
