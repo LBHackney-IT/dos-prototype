@@ -74,3 +74,17 @@ $govuk-global-styles: true;
 .hackit-tag--attention-required {
     background-color: govuk-colour("blue");
 }
+
+del {
+    text-decoration: none;
+    color: #b30000;
+    background: #fadad7;
+}
+ins {
+    background: #eaf2c2;
+    color: #406619;
+    text-decoration: none;
+}
+pre {
+    white-space: pre-wrap; 
+}

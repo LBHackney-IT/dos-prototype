@@ -1,4 +1,7 @@
 {% extends "layout_hackney.html" %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "macros/diff.html" import diff %}
+{% from "button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
   Service update
@@ -6,13 +9,57 @@
 
 {% block content %}
 
+{% set title = 'Peter Bedford Housing Association' %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-hirds">
+        {{ govukBackLink({
+            text: "Back",
+            href: "/data-listing"
+        }) }}
       <h1 class="govuk-heading-xl">
-        Service update 
+        Update pending 
+        <span class="govuk-caption-xl">{{ title }}</span>
+        <span class="govuk-caption-m">Submitted by lewis.nyman@convivio.team on 11/12/2017</span>
       </h1>
-    
+
+      <h2 class="govuk-heading-m">
+            Description 
+      </h2>
+      <pre>Supported Living Schemes (SLS) help vulnerable adults<del>,</del> <del>mostly aged 65 and older, </del>to live as independently as possible in the community. Service users are responsible for their own tenancies, and receive an agreed level of care and housing related support to meet their needs.
+
+Albion Road specialises in long-term care for people with physical disabilities.
+        
+Housing with support
+16 flats. Sizes 1 bedroom. Includes mobility standard properties
+On-site care staff, non-resident management staff (24 hours, 7 days) and community alarm service
+Lounge, dining room, laundry, garden
+New residents accepted from <del>55</del><ins>45</ins> years of age. Cats only generally accepted, but <del>not</del><ins>can</ins> <del>to </del>be replaced
+Rent (social landlord)</pre>
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <h2 class="govuk-heading-m">
+            Contact details 
+        </h2>
+        <h3 class="govuk-heading-s">Website</h3>
+        <!-- http://incaseofstairs.com/jsdiff/ -->
+        {{diff('https://google.com', 'https://bing.com')}}
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            Venue details
+        </h2>
+        <h3 class="govuk-heading-s">Venue details</h3>
+        {{diff('Pembury Community Centre', 'Hackney Chinese Community Services Ltd')}}
+        <h3 class="govuk-heading-s">Building and street</h3>
+        {{diff('1 Atkins Square', '28-32 Ellingfort Rd')}}
+        <h3 class="govuk-heading-s">Postcode</h3>
+        {{diff('E8 1FA', 'E8 3PA')}}
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        {{ govukButton({
+            text: "Publish changes",
+            href: "/data-listing"
+        }) }}
     </div>
 </div>
+
+
 
 {% endblock %}
