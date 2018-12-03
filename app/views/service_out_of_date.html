@@ -1,4 +1,5 @@
 {% extends "layout_hackney.html" %}
+{% from "back-link/macro.njk" import govukBackLink %}
 
 {% block pageTitle %}
   Service out of date
@@ -6,12 +7,61 @@
 
 {% block content %}
 
+{% set title = 'Bikur Cholim' %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-hirds">
+        {{ govukBackLink({
+            text: "Back",
+            href: "/data-listing"
+        }) }}
       <h1 class="govuk-heading-xl">
-        Service out of date 
+        Out of date 
+        <span class="govuk-caption-xl">{{ title }}</span>
       </h1>
-    
+
+      <h2 class="govuk-heading-m">
+            Contact details
+        </h2>
+        <dl class="app-check-your-answers app-check-your-answers--long">
+            <div class="app-check-your-answers__contents">
+              <dt class="app-check-your-answers__question">
+                  Website
+              </dt>
+              <dd class="app-check-your-answers__answer">
+                404
+              </dd>
+              <dd class="app-check-your-answers__change">
+                  <a href="/data-listing/0/edit">
+                  Change<span class="govuk-visually-hidden"> website</span>
+                </a><br />
+                <a href="#">
+                    Contact provider
+                </a>
+              </dd>
+            </div>
+          </dl>
+      
+        <h2 class="govuk-heading-m">
+                Venue details
+        </h2>
+        <dl class="app-check-your-answers app-check-your-answers--long">
+            <div class="app-check-your-answers__contents">
+              <dt class="app-check-your-answers__question">
+                  Venue details
+              </dt>
+              <dd class="app-check-your-answers__answer">
+                User flagged
+              </dd>
+              <dd class="app-check-your-answers__change">
+                  <a href="/data-listing/0/edit">
+                  Change<span class="govuk-visually-hidden"> venue details</span>
+                </a><br />
+                <a href="#">
+                    Contact provider
+                </a>
+              </dd>
+            </div>
+          </dl>
     </div>
 </div>
 
