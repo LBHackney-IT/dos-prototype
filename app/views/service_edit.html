@@ -33,7 +33,10 @@
     },
     id: "title",
     name: "title",
-    value: title
+    value: title,
+    attributes: {
+        "data-hj-whitelist": ""
+    }
     }) }}
 
 
@@ -42,6 +45,9 @@
     id: "description",
     label: {
         text: "Description"
+    },
+    attributes: {
+        "data-hj-whitelist": ""
     }
     }) }}
 
@@ -60,7 +66,10 @@
             text: 'Contact name'
             },
             id: "contact-name",
-            name: "contact-name"
+            name: "contact-name",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
         }) }}
 
         {{ govukInput({
@@ -68,7 +77,10 @@
             text: 'Contact position'
             },
             id: "contact-position",
-            name: "contact-position"
+            name: "contact-position",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
         }) }}
 
         {{ govukInput({
@@ -77,7 +89,10 @@
             },
             type: 'tel',
             id: "contact-telephone",
-            name: "contact-telephone"
+            name: "contact-telephone",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
         }) }}
 
         {{ govukInput({
@@ -86,7 +101,10 @@
             },
             type: 'email',
             id: "contact-email",
-            name: "contact-email"
+            name: "contact-email",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
         }) }}
 
     {% endcall %}
@@ -97,7 +115,10 @@
         },
         type: 'url',
         id: "website-url",
-        name: "website-url"
+        name: "website-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
     }) }}
 
     {{ govukInput({
@@ -106,7 +127,10 @@
         },
         type: 'url',
         id: "facebook-url",
-        name: "facebook-url"
+        name: "facebook-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
     }) }}
 
     {{ govukInput({
@@ -115,7 +139,10 @@
         },
         type: 'url',
         id: "twitter-url",
-        name: "twitter-url"
+        name: "twitter-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
     }) }}
 
 
@@ -132,7 +159,10 @@
       text: 'Venue name'
     },
     id: "venue-name",
-    name: "venue-name"
+    name: "venue-name",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
 {{ govukInput({
@@ -140,7 +170,10 @@
       html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
     },
     id: "address-line-1",
-    name: "address-line-1"
+    name: "address-line-1",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
   {{ govukInput({
@@ -148,7 +181,10 @@
       html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
     },
     id: "address-line-2",
-    name: "address-line-2"
+    name: "address-line-2",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
   {{ govukInput({
@@ -157,7 +193,10 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "address-town",
-    name: "address-town"
+    name: "address-town",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
   {{ govukInput({
@@ -166,7 +205,10 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "address-county",
-    name: "address-county"
+    name: "address-county",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
   {{ govukInput({
@@ -175,7 +217,10 @@
     },
     classes: "govuk-input--width-10",
     id: "address-postcode",
-    name: "address-postcode"
+    name: "address-postcode",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
   }) }}
 
   {{ govukTextarea({
@@ -183,6 +228,9 @@
     id: "venue-details",
     label: {
         text: "Additional venue details"
+    },
+    attributes: {
+        "data-hj-whitelist": ""
     }
 }) }}
 
@@ -201,7 +249,10 @@
         text: 'Amount'
       },
       id: "cost-amount",
-      name: "cost-amount"
+      name: "cost-amount",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
     }) }}
 
     {{ govukSelect({
@@ -252,7 +303,10 @@
         value: "special-offer",
         text: "Special offer see 'other info'"
         }
-    ]
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
     }) }}
 
     {{ govukTextarea({
@@ -260,6 +314,9 @@
       id: "cost-details",
       label: {
           text: "Additional cost details"
+      },
+      attributes: {
+          "data-hj-whitelist": ""
       }
   }) }}
   
@@ -278,7 +335,10 @@
         text: 'Date Time'
       },
       id: "date-time",
-      name: "date-time"
+      name: "date-time",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
     }) }}
 
     {{ govukCheckboxes({
@@ -302,7 +362,10 @@
         value: "evening",
         text: "Evening"
         }
-    ]
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
     }) }}
 
     {{ govukTextarea({
@@ -310,6 +373,9 @@
       id: "session-info",
       label: {
           text: "Session information"
+      },
+      attributes: {
+          "data-hj-whitelist": ""
       }
   }) }}
   
