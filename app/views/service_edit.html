@@ -6,6 +6,7 @@
 {% from "fieldset/macro.njk" import govukFieldset %}
 {% from "select/macro.njk" import govukSelect %}
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
 
 {% block pageTitle %}
   Service edit
@@ -26,6 +27,28 @@
         <span class="govuk-caption-xl">{{ title }}</span>
       </h1>
 
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "status",
+        name: "status",
+        fieldset: {
+          legend: {
+            text: "Status",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "live",
+            text: "Live",
+            checked: true
+          },
+          {
+            value: "archived",
+            text: "Archived"
+          }
+        ]
+      }) }}
 
     {{ govukInput({
     label: {
