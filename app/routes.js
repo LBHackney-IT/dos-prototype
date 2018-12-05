@@ -18,4 +18,8 @@ router.get('/data-listing/:serviceId/update', function (req, res) {
     res.render('service_update', {'serviceId' : req.params.serviceId});
 })
 
+router.get('/data-listing/:serviceId/submission', function (req, res) {
+    res.render('service_submission', {'serviceId' : req.params.serviceId});
+})
+
 module.exports = router

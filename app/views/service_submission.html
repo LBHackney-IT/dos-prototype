@@ -1,0 +1,105 @@
+{% extends "layout_hackney.html" %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "macros/diff.html" import diff %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Service update
+{% endblock %}
+
+{% block content %}
+
+{% set title = 'Peter Bedford Housing Association' %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-hirds">
+        {{ govukBackLink({
+            text: "Back",
+            href: "/data-listing"
+        }) }}
+      <h1 class="govuk-heading-xl">
+        New submission 
+        <span class="govuk-caption-xl">{{ title }}</span>
+        <span class="govuk-caption-m">Submitted by lewis.nyman@convivio.team on 04/12/2018</span>
+      </h1>
+
+      <h2 class="govuk-heading-m">
+            Description 
+      </h2>
+      <p>We are a registered charity that manage and showcase innovative theatre projects for adults with learning disabilities in Hackney and offer opportunities for all our members to change and grow through the arts. We run a whole range of exciting and innovative projects to include:</p>
+<p>Black Cab Theatre Company<br>
+A weekly performing arts project for people with a mild to moderate learning disability that leads to professionally led productions for the general public.</p>
+<p>Leader lab<br>
+An accredited training programme in theatre related skills that enables people to move towards employment opportunities.</p>
+<p>Spinning Wheel<br>
+A multi sensory movement and music project for people with severe and profound and multiple learning disabilities.</p>
+<p>Performance company<br>
+A core ensemble of actors with mild learning disabilities who want to bring their work to a wider audience in a range of venues and performance styles.</p>
+<p>The Triple Agency<br>
+A specialist actors agency with a talented group of actors with learning disabilities that have successfully fulfilled many professional contracts in TV, radio and theatre.</p>
+<p>Spring Back</p>
+<p>Spring Back is a drama project to build your resilience, have fun, make friends and shape a support network around you.</p>
+<p>Our Mission<br>
+To advance the education of persons with learning disabilities, in particular, but not exclusively through the promotion of the arts of drama, dance and related activities, with a view to developing life skills and improving the conditions of life of such persons.</p>
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <h2 class="govuk-heading-m">
+            Contact details 
+        </h2>
+        <h3 class="govuk-heading-s">Name</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Position</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Telephone</h3>
+        <p>020 7613 6445</p>
+        <h3 class="govuk-heading-s">Email</h3>
+        <p>hello@accessallareastheatre.org</p>
+        <h3 class="govuk-heading-s">Website</h3>
+        <p><a href="http://www.accessallareastheatre.org">http://www.accessallareastheatre.org</a></p>
+        <h3 class="govuk-heading-s">Facebook</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Twitter</h3>
+        <p>Blank</p>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            Venue details
+        </h2>
+        <h3 class="govuk-heading-s">Venue details</h3>
+        <p>Bradbury studios</p>
+        <h3 class="govuk-heading-s">Building and street</h3>
+        <p>138, Kingsland Road</p>
+        <h3 class="govuk-heading-s">Town or city</h3>
+        <p>London</p>
+        <h3 class="govuk-heading-s">Postcode</h3>
+        <p>E2 8DY</p>
+        <h3 class="govuk-heading-s">Additional venue details</h3>
+        <p>Blank</p>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            Cost information
+        </h2>
+        <h3 class="govuk-heading-s">Amount</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Cost type</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Additional cost details</h3>
+        <p>Blank</p>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            Date and time
+        </h2>
+        <h3 class="govuk-heading-s">Date time</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Time of day</h3>
+        <p>Blank</p>
+        <h3 class="govuk-heading-s">Session information</h3>
+        <p>Blank</p>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        {{ govukButton({
+            text: "Approve and publish submission",
+            href: "/data-listing"
+        }) }}
+    </div>
+</div>
+
+
+
+{% endblock %}
