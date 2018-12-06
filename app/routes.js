@@ -34,4 +34,8 @@ router.get('/service-provider-actions/:serviceId/edit', function (req, res) {
     res.render('service_edit_provider', {'serviceId' : req.params.serviceId});
 })
 
+router.get('/service-provider-actions/submit', function (req, res) {
+    res.render('service_submit_provider');
+})
+
 module.exports = router

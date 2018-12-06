@@ -1,17 +1,21 @@
 {% extends "layout_hackney.html" %}
 {% from "table/macro.njk" import govukTable %}
+{% from "button/macro.njk" import govukButton %}
 
 {% set editLink = '<a href="/service-provider-actions/0/edit" class="govuk-link">Edit</a>' %}
 {% set outofdateLink = '<a href="/service-provider-actions/0/out-of-date" class="govuk-link">View out of date information</a>' %}
-{% set updateLink = '<a href="/service-provider-actions/0/update" class="govuk-link">View update</a>' %}
-{% set submissionLink = '<a href="/service-provider-actions/0/submission" class="govuk-link">View submission</a>' %}
 
 {% set dangerActions = [editLink, outofdateLink] | join('<br />')  %}
-{% set updateActions = [editLink, updateLink] | join('<br />')  %}
-{% set submissionActions = [editLink, submissionLink] | join('<br />')  %}
 
 {% block content %}
 <h1 class="govuk-heading-xl">My services</h1>
+
+{{ govukButton({
+    text: "Submit a new service",
+    href: "/service-provider-actions/submit",
+    classes: "govuk-button--start"
+}) }}
+
 {{ govukTable({
   firstCellIsHeader: true,
   head: [

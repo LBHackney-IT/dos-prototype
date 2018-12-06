@@ -1,0 +1,415 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service edit
+{% endblock %}
+
+{% block content %}
+
+{% set title = 'Clapton Park advice session' %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "/service-provider-actions"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Edit 
+        <span class="govuk-caption-xl">{{ title }}</span>
+      </h1>
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "status",
+        name: "status",
+        fieldset: {
+          legend: {
+            text: "Status",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "live",
+            text: "Live",
+            checked: true
+          },
+          {
+            value: "archived",
+            text: "Archived"
+          }
+        ]
+      }) }}
+
+    {{ govukInput({
+    label: {
+        text: "Title"
+    },
+    id: "title",
+    name: "title",
+    value: title,
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+
+    {{ govukTextarea({
+    name: "description",
+    id: "description",
+    label: {
+        text: "Description"
+    },
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+
+    {% call govukFieldset({
+
+        legend: {
+            text: "Contact details",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: false
+        }
+        }) %}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact name'
+            },
+            id: "contact-name",
+            name: "contact-name",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact position'
+            },
+            id: "contact-position",
+            name: "contact-position",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact telephone'
+            },
+            type: 'tel',
+            id: "contact-telephone",
+            name: "contact-telephone",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: 'Contact email'
+            },
+            type: 'email',
+            id: "contact-email",
+            name: "contact-email",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+    {% endcall %}
+
+    {{ govukInput({
+        label: {
+            text: 'Website'
+        },
+        type: 'url',
+        id: "website-url",
+        name: "website-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: 'Facebook'
+        },
+        type: 'url',
+        id: "facebook-url",
+        name: "facebook-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: 'Twitter'
+        },
+        type: 'url',
+        id: "twitter-url",
+        name: "twitter-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+
+{% call govukFieldset({
+  legend: {
+    text: "Venue details",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: false
+  }
+}) %}
+
+{{ govukInput({
+    label: {
+      text: 'Venue name'
+    },
+    id: "venue-name",
+    name: "venue-name",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+{{ govukInput({
+    label: {
+      html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+    },
+    id: "address-line-1",
+    name: "address-line-1",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+  {{ govukInput({
+    label: {
+      html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+    },
+    id: "address-line-2",
+    name: "address-line-2",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "address-town",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "address-county",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "address-postcode",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+  }) }}
+
+  {{ govukTextarea({
+    name: "venue-details",
+    id: "venue-details",
+    label: {
+        text: "Additional venue details"
+    },
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+
+{% endcall %}
+
+{% call govukFieldset({
+    legend: {
+      text: "Cost information",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: false
+    }
+  }) %}
+  
+  {{ govukInput({
+      label: {
+        text: 'Amount'
+      },
+      id: "cost-amount",
+      name: "cost-amount",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+
+    {{ govukSelect({
+    id: "cost-type",
+    name: "cost-type",
+    label: {
+        text: "Cost type"
+    },
+    items: [
+        {
+        value: "deposit",
+        text: "Desposit"
+        },
+        {
+        value: "per-day",
+        text: "Per day"
+        },
+        {
+        value: "per-hour",
+        text: "Per hour"
+        },
+        {
+        value: "per-month",
+        text: "Per month"
+        },
+        {
+        value: "per-session",
+        text: "Per session"
+        },
+        {
+        value: "per-term",
+        text: "Per term"
+        },
+        {
+        value: "per-week",
+        text: "Per week"
+        },
+        {
+        value: "per-year",
+        text: "Per year"
+        },
+        {
+        value: "registration-fee",
+        text: "Registration fee",
+        selected: true
+        },
+        {
+        value: "special-offer",
+        text: "Special offer see 'other info'"
+        }
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+    {{ govukTextarea({
+      name: "cost-details",
+      id: "cost-details",
+      label: {
+          text: "Additional cost details"
+      },
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+  }) }}
+  
+  {% endcall %}
+
+  {% call govukFieldset({
+    legend: {
+      text: "Date and time",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: false
+    }
+  }) %}
+  
+  {{ govukInput({
+      label: {
+        text: 'Date Time'
+      },
+      id: "date-time",
+      name: "date-time",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+
+    {{ govukCheckboxes({
+    idPrefix: "time-of-day",
+    name: "time-of-day",
+    fieldset: {
+        legend: {
+        text: "Time of day"
+        }
+    },
+    items: [
+        {
+        value: "morning",
+        text: "Morning"
+        },
+        {
+        value: "Afternoon",
+        text: "Afternoon"
+        },
+        {
+        value: "evening",
+        text: "Evening"
+        }
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+    {{ govukTextarea({
+      name: "session-info",
+      id: "session-info",
+      label: {
+          text: "Session information"
+      },
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+  }) }}
+  
+  {% endcall %}
+
+    {{ govukButton({
+    text: "Save and exit",
+    href: "/data-listing"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}
