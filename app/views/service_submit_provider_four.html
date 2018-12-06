@@ -1,0 +1,129 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service submit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "./three"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Submit a new service 
+        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
+      </h1>
+
+    
+
+{% call govukFieldset({
+    legend: {
+      text: "Venue details",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: false
+    }
+  }) %}
+  
+  {{ govukInput({
+      label: {
+        text: 'Venue name'
+      },
+      id: "venue-name",
+      name: "venue-name",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+  {{ govukInput({
+      label: {
+        html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+      },
+      id: "address-line-1",
+      name: "address-line-1",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+      },
+      id: "address-line-2",
+      name: "address-line-2",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        text: "Town or city"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "address-town",
+      name: "address-town",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        text: "County"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "address-county",
+      name: "address-county",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+    {{ govukInput({
+      label: {
+        text: "Postcode"
+      },
+      classes: "govuk-input--width-10",
+      id: "address-postcode",
+      name: "address-postcode",
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+    }) }}
+  
+    {{ govukTextarea({
+      name: "venue-details",
+      id: "venue-details",
+      label: {
+          text: "Additional venue details"
+      },
+      attributes: {
+          "data-hj-whitelist": ""
+      }
+  }) }}
+  
+  {% endcall %}
+
+    {{ govukButton({
+    text: "Save and continue",
+    href: "./five"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}

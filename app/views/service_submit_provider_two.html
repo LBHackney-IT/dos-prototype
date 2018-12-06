@@ -1,0 +1,60 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service submit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "./one"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Submit a new service 
+        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
+      </h1>
+
+    {{ govukInput({
+    label: {
+        text: "Title"
+    },
+    id: "title",
+    name: "title",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+
+    {{ govukTextarea({
+    name: "description",
+    id: "description",
+    label: {
+        text: "Description"
+    },
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+    {{ govukButton({
+    text: "Save and continue",
+    href: "./three"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}

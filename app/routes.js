@@ -34,8 +34,18 @@ router.get('/service-provider-actions/:serviceId/edit', function (req, res) {
     res.render('service_edit_provider', {'serviceId' : req.params.serviceId});
 })
 
-router.get('/service-provider-actions/submit', function (req, res) {
-    res.render('service_submit_provider');
+router.get('/service-provider-actions/submit/:step', function (req, res) {
+    var step = req.params.step;
+    var steps = 'six';
+    res.render('service_submit_provider_' + step, 
+    {
+        'step' : step, 
+        'steps' : steps
+    });
+})
+
+router.get('/service-provider-actions/confirm', function (req, res) {
+    res.render('service_provider_actions', {'title': 'Submission successful','message' : 'You\'ll recieve an email shortly.'});
 })
 
 module.exports = router

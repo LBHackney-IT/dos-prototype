@@ -1,0 +1,123 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service submit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "./four"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Submit a new service 
+        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
+      </h1>
+
+      {% call govukFieldset({
+        legend: {
+          text: "Cost information",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: false
+        }
+      }) %}
+      
+      {{ govukInput({
+          label: {
+            text: 'Amount'
+          },
+          id: "cost-amount",
+          name: "cost-amount",
+          attributes: {
+              "data-hj-whitelist": ""
+          }
+        }) }}
+    
+        {{ govukSelect({
+        id: "cost-type",
+        name: "cost-type",
+        label: {
+            text: "Cost type"
+        },
+        items: [
+            {
+            value: "deposit",
+            text: "Desposit"
+            },
+            {
+            value: "per-day",
+            text: "Per day"
+            },
+            {
+            value: "per-hour",
+            text: "Per hour"
+            },
+            {
+            value: "per-month",
+            text: "Per month"
+            },
+            {
+            value: "per-session",
+            text: "Per session"
+            },
+            {
+            value: "per-term",
+            text: "Per term"
+            },
+            {
+            value: "per-week",
+            text: "Per week"
+            },
+            {
+            value: "per-year",
+            text: "Per year"
+            },
+            {
+            value: "registration-fee",
+            text: "Registration fee",
+            selected: true
+            },
+            {
+            value: "special-offer",
+            text: "Special offer see 'other info'"
+            }
+        ],
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+        }) }}
+    
+        {{ govukTextarea({
+          name: "cost-details",
+          id: "cost-details",
+          label: {
+              text: "Additional cost details"
+          },
+          attributes: {
+              "data-hj-whitelist": ""
+          }
+      }) }}
+
+      {% endcall %}
+
+    {{ govukButton({
+    text: "Save and continue",
+    href: "./six"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}

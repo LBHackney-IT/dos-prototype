@@ -10,9 +10,16 @@
 {% block content %}
 <h1 class="govuk-heading-xl">My services</h1>
 
+{% if message %}
+{% from "panel/macro.njk" import govukPanel %}
+    {{ govukPanel({
+        titleText: title,
+        text: message
+    }) }}
+{% endif %}
 {{ govukButton({
     text: "Submit a new service",
-    href: "/service-provider-actions/submit",
+    href: "/service-provider-actions/submit/one",
     classes: "govuk-button--start"
 }) }}
 

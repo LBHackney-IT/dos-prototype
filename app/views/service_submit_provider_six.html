@@ -1,0 +1,96 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service submit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "./five"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Submit a new service 
+        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
+      </h1>
+
+      {% call govukFieldset({
+        legend: {
+          text: "Date and time",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: false
+        }
+      }) %}
+      
+      {{ govukInput({
+          label: {
+            text: 'Date Time'
+          },
+          id: "date-time",
+          name: "date-time",
+          attributes: {
+              "data-hj-whitelist": ""
+          }
+        }) }}
+    
+        {{ govukCheckboxes({
+        idPrefix: "time-of-day",
+        name: "time-of-day",
+        fieldset: {
+            legend: {
+            text: "Time of day"
+            }
+        },
+        items: [
+            {
+            value: "morning",
+            text: "Morning"
+            },
+            {
+            value: "Afternoon",
+            text: "Afternoon"
+            },
+            {
+            value: "evening",
+            text: "Evening"
+            }
+        ],
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+        }) }}
+    
+        {{ govukTextarea({
+          name: "session-info",
+          id: "session-info",
+          label: {
+              text: "Session information"
+          },
+          attributes: {
+              "data-hj-whitelist": ""
+          }
+      }) }}
+      
+      {% endcall %}
+
+    {{ govukButton({
+    text: "Save and finish",
+    href: "/service-provider-actions/confirm"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}

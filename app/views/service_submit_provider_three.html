@@ -1,0 +1,95 @@
+{% extends "layout_hackney.html" %}
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Service submit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: "./two"
+    }) }}
+      <h1 class="govuk-heading-xl">
+        Submit a new service 
+        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
+      </h1>
+
+    {% call govukFieldset({
+
+        legend: {
+            text: "Contact details",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: false
+        }
+        }) %}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact name'
+            },
+            id: "contact-name",
+            name: "contact-name",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact position'
+            },
+            id: "contact-position",
+            name: "contact-position",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+            text: 'Contact telephone'
+            },
+            type: 'tel',
+            id: "contact-telephone",
+            name: "contact-telephone",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: 'Contact email'
+            },
+            type: 'email',
+            id: "contact-email",
+            name: "contact-email",
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
+
+    {% endcall %}
+
+
+    {{ govukButton({
+    text: "Save and continue",
+    href: "./four"
+    }) }}
+
+    </div>
+</div>
+
+{% endblock %}
