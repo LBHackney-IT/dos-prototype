@@ -1,0 +1,88 @@
+{% extends "layout_hackney.html" %}
+{% from "table/macro.njk" import govukTable %}
+
+{% set editLink = '<a href="/service-provider-actions/0/edit" class="govuk-link">Edit</a>' %}
+{% set outofdateLink = '<a href="/service-provider-actions/0/out-of-date" class="govuk-link">View out of date information</a>' %}
+{% set updateLink = '<a href="/service-provider-actions/0/update" class="govuk-link">View update</a>' %}
+{% set submissionLink = '<a href="/service-provider-actions/0/submission" class="govuk-link">View submission</a>' %}
+
+{% set dangerActions = [editLink, outofdateLink] | join('<br />')  %}
+{% set updateActions = [editLink, updateLink] | join('<br />')  %}
+{% set submissionActions = [editLink, submissionLink] | join('<br />')  %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">My services</h1>
+{{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Status"
+    },
+    {
+      text: "Type"
+    },
+    {
+        text: "Last updated"
+    },
+    {
+        text: "Actions"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Clapton Park advice session"
+      },
+      {
+        html: "<strong class='govuk-tag hackit-tag--mundane'>Live</strong>"
+      },
+      {
+        text: "Community group"
+      },
+      {
+        text: "13:56 11/01/2018"
+      },
+      {
+        html: editLink
+      }
+    ],
+    [
+      {
+        text: "Bikur Cholim"
+      },
+      {
+        html: "<strong class='govuk-tag hackit-tag--danger'>Out of date</strong>"
+      },
+      {
+        text: "Private limited company"
+      },
+      {
+        text: "12:14 13/02/2017"
+      },
+      {
+        html: dangerActions
+      }
+    ],
+    [
+      {
+        text: "Peter Bedford Housing Association"
+      },
+      {
+        html: "<strong class='govuk-tag hackit-tag--mundane'>Archived</strong>"
+      },
+      {
+        text: "Housing association"
+      },
+      {
+        text: "08:36 27/02/2016"
+      },
+      {
+        html: editLink
+      }
+    ]
+  ]
+}) }}
+{% endblock %}

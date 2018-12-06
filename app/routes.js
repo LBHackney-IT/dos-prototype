@@ -3,7 +3,7 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 router.get('/data-listing', function (req, res) {
-    res.render('data_listing', {'message' : 'Hello world'});
+    res.render('data_listing');
 });
 
 router.get('/data-listing/:serviceId/edit', function (req, res) {
@@ -20,6 +20,18 @@ router.get('/data-listing/:serviceId/update', function (req, res) {
 
 router.get('/data-listing/:serviceId/submission', function (req, res) {
     res.render('service_submission', {'serviceId' : req.params.serviceId});
+})
+
+router.get('/service-provider-actions', function (req, res) {
+    res.render('service_provider_actions');
+})
+
+router.get('/service-provider-actions/:serviceId/out-of-date', function (req, res) {
+    res.render('service_out_of_date_provider', {'serviceId' : req.params.serviceId});
+})
+
+router.get('/service-provider-actions/:serviceId/edit', function (req, res) {
+    res.render('service_edit_provider', {'serviceId' : req.params.serviceId});
 })
 
 module.exports = router
