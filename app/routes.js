@@ -3,7 +3,7 @@ const router = express.Router()
 const categories = require('./data/categories.json')
 
 // Add your routes here - above the module.exports line
-router.get('/data-listing', function (req, res) {
+router.all('/data-listing', function (req, res) {
     res.render('data_listing');
 });
 

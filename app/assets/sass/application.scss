@@ -123,3 +123,29 @@ pre {
     bottom: -12px;
     padding: 1rem 0 0;
 }
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+    border: 4px solid #b10e1e;
+}
+
+.parsley-errors-list {
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+    font-weight: bold;
+color: #b10e1e;
+  margin: 2px 0 3px;
+  padding: 0;
+  list-style-type: none;
+  opacity: 0;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+}

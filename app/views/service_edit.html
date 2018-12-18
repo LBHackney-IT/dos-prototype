@@ -19,7 +19,7 @@
         <span class="govuk-caption-xl">{{ title }}</span>
       </h1>
 
-      
+      <form action="/data-listing" method="post" data-parsley-validate>
       {{ govukRadios({
           classes: "govuk-radios--inline",
           idPrefix: "status",
@@ -55,7 +55,8 @@
     name: "title",
     value: title,
     attributes: {
-        "data-hj-whitelist": ""
+        "data-hj-whitelist": "",
+        "required": "required"
     }
     }) }}
 
@@ -403,10 +404,10 @@
 
   <div class="sticky-buttons">
       {{ govukButton({
-      text: "Save and exit",
-      href: "/data-listing"
+      text: "Save and exit"
       }) }}
     </div>
+</form>
 
     </div>
 </div>
