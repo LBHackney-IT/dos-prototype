@@ -1,12 +1,4 @@
 {% extends "layout_hackney.html" %}
-{% from "input/macro.njk" import govukInput %}
-{% from "button/macro.njk" import govukButton %}
-{% from "back-link/macro.njk" import govukBackLink %}
-{% from "textarea/macro.njk" import govukTextarea %}
-{% from "fieldset/macro.njk" import govukFieldset %}
-{% from "select/macro.njk" import govukSelect %}
-{% from "checkboxes/macro.njk" import govukCheckboxes %}
-{% from "radios/macro.njk" import govukRadios %}
 
 {% block pageTitle %}
   Service edit
@@ -27,28 +19,33 @@
         <span class="govuk-caption-xl">{{ title }}</span>
       </h1>
 
+      
       {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "status",
-        name: "status",
-        fieldset: {
+          classes: "govuk-radios--inline",
+          idPrefix: "status",
+          name: "status",
+          fieldset: {
           legend: {
-            text: "Status",
-            classes: "govuk-fieldset__legend--s"
-          }
+              text: "Status",
+              classes: "govuk-fieldset__legend--s"
+            }
         },
         items: [
-          {
+        {
             value: "live",
             text: "Live",
             checked: true
-          },
-          {
+        },
+        {
             value: "archived",
             text: "Archived"
-          }
+        }
         ]
-      }) }}
+    }) }}
+   
+    {{ categoriesSelect({
+        items: categories
+    }) }}
 
     {{ govukInput({
     label: {
@@ -408,11 +405,6 @@
       {{ govukButton({
       text: "Save and exit",
       href: "/data-listing"
-      }) }}
-        {{ govukButton({
-            text: "Edit",
-            href: "./edit",
-            classes: "hackit-button--secondary"
       }) }}
     </div>
 

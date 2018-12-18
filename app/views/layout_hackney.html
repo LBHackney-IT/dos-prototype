@@ -4,6 +4,15 @@
 {% from "header/macro.njk" import govukHeader %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "footer/macro.njk" import govukFooter %}
+{% from "macros/diff.html" import diff %}
+{% from "button/macro.njk" import govukButton %}
+{% from "input/macro.njk" import govukInput %}
+{% from "textarea/macro.njk" import govukTextarea %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "select/macro.njk" import govukSelect %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "macros/categories_select.html" import categoriesSelect %}
 
 {% block top_of_page %}{% endblock %}
 
@@ -23,22 +32,14 @@
       containerClasses: "govuk-width-container",
       serviceName: "Directory of service",
       serviceUrl: "/"
-    }) }}
+  }) }}
   {% endblock %}
 
     {% block content %}{% endblock %}
 
-    {% block bodyEnd %}
-      <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
-      <!-- Hotjar Tracking Code for https://lbh-dos-prototypes.herokuapp.com -->
-  <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:1114566,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  </script>
+{% block bodyEnd %}
+    {% block scripts %}
+        {% include "includes/scripts.html" %}
+        {% block pageScripts %}{% endblock %}
     {% endblock %}
+{% endblock %}

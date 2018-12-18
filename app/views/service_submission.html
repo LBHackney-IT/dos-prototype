@@ -1,7 +1,4 @@
 {% extends "layout_hackney.html" %}
-{% from "back-link/macro.njk" import govukBackLink %}
-{% from "macros/diff.html" import diff %}
-{% from "button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
   Service update
@@ -21,6 +18,10 @@
         <span class="govuk-caption-xl">{{ title }}</span>
         <span class="govuk-caption-m">Submitted by lewis.nyman@convivio.team on 04/12/2018</span>
       </h1>
+
+      {{ categoriesSelect({
+        items: categories
+        }) }}
 
       <h2 class="govuk-heading-m">
             Description 

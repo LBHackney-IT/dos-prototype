@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const categories = require('./data/categories.json')
 
 // Add your routes here - above the module.exports line
 router.get('/data-listing', function (req, res) {
@@ -7,7 +8,7 @@ router.get('/data-listing', function (req, res) {
 });
 
 router.get('/data-listing/:serviceId/edit', function (req, res) {
-    res.render('service_edit', {'serviceId' : req.params.serviceId});
+    res.render('service_edit', {'serviceId' : req.params.serviceId, 'categories' : categories.results});
 })
 
 router.get('/data-listing/:serviceId/out-of-date', function (req, res) {
@@ -19,7 +20,7 @@ router.get('/data-listing/:serviceId/update', function (req, res) {
 })
 
 router.get('/data-listing/:serviceId/submission', function (req, res) {
-    res.render('service_submission', {'serviceId' : req.params.serviceId});
+    res.render('service_submission', {'serviceId' : req.params.serviceId, 'categories' : categories.results});
 })
 
 router.get('/service-provider-actions', function (req, res) {

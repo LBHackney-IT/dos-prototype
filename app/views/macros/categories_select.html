@@ -1,0 +1,16 @@
+{% macro categoriesSelect(items) %}
+<div class="govuk-form-group">
+    <label class="govuk-label" for="categories">
+        Categories
+    </label>
+    <select class="js-select2 govuk-select" name="categories" multiple="multiple">
+        {% for item in items.items %}
+            <optgroup label="{{ item.text }}">
+            {% for child in item.children %}
+                <option value="{{ child.id }}">{{ child.text }}</option>
+            {% endfor %}
+            </optgroup>
+        {% endfor %}
+    </select>
+</div>
+{% endmacro %}
