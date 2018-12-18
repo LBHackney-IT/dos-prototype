@@ -67,6 +67,10 @@ $govuk-global-styles: true;
     background-size: contain;
     display: block;
 }
+.govuk-header__link--service-name {
+    font-size: 45px;
+    padding: 35px 20px;
+}
 
 .hackit-tag--danger {
     background-color: $govuk-error-colour;
