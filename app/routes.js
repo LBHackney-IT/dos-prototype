@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const categories = require('./data/categories.json')
+const cheerio = require('cheerio')
 
 // Add your routes here - above the module.exports line
 router.all('/data-listing', function (req, res) {
@@ -38,11 +39,26 @@ router.all('/service-provider-actions/:serviceId/edit', function (req, res) {
 router.all('/service-provider-actions/submit/:step', function (req, res) {
     var step = req.params.step;
     var steps = 'six';
-    res.render('service_submit_provider_' + step, 
-    {
-        'step' : step, 
-        'steps' : steps
-    });
+    var formData = req.body;
+    if(formData['facebook-url'] && formData['facebook-url'] !== '') {
+        scrapeFacebook(formData['facebook-url'], function(facebookData){
+            console.log(facebookData);
+            res.render('service_submit_provider_' + step, 
+            {
+                'step' : step, 
+                'steps' : steps,
+                'formData': formData,
+                'facebookData' : facebookData
+            });    
+        });
+    } else {
+        res.render('service_submit_provider_' + step, 
+        {
+            'step' : step, 
+            'steps' : steps,
+            'formData': formData
+        });
+    }
 })
 
 router.all('/service-provider-actions/confirm', function (req, res) {
@@ -61,5 +77,32 @@ router.all('/api/url-exists', function (req, res) {
     });
 
 })
+
+scrapeFacebook = function(url, cb) {
+    var request = require('request');
+    const $ = require('cheerio');
+    request(url,
+    {
+        headers: {
+        'user-agent': 'curl/7.47.0',
+        'accept-language': 'en-US,en',
+        'accept': '*/*'
+        }
+    }, function (error, response, body) {
+        if (error) {
+        throw (error);
+        }
+        if (response.statusCode === 200) {
+        // console.log(JSON.stringify(body, null, 2));
+        const $ = cheerio.load(body)
+        let facebookData = {};
+        facebookData.title = $('#pageTitle').text().replace(' | Facebook', '');
+        facebookData.description = $("meta[name='description']").attr("content")
+        cb(facebookData);
+        } else {
+        console.log('HTTP Error: ' + response.statusCode);
+        }
+    });
+}
 
 module.exports = router
