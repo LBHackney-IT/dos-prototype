@@ -49,4 +49,17 @@ router.all('/service-provider-actions/confirm', function (req, res) {
     res.render('service_provider_actions', {'title': 'Submission successful','message' : 'You\'ll recieve an email shortly.'});
 })
 
+router.all('/api/url-exists', function (req, res) {
+    var urlExists = require('url-exists');
+    var url = req.query.url;
+    urlExists(url, function(err, exists) {
+        if (exists) {
+            res.send(exists);
+        } else {
+            res.status(500).send(exists)
+        }
+    });
+
+})
+
 module.exports = router

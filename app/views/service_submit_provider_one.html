@@ -43,7 +43,9 @@
             id: "website-url",
             name: "website-url",
             attributes: {
-                "data-hj-whitelist": ""
+                "data-hj-whitelist": "",
+                "data-parsley-remote":"/api/url-exists?url={value}",
+                "data-parsley-remote-message": "This page doesn't seem to exist"
             }
         }) }}
     
@@ -55,7 +57,9 @@
             id: "facebook-url",
             name: "facebook-url",
             attributes: {
-                "data-hj-whitelist": ""
+                "data-hj-whitelist": "",
+                "data-parsley-remote":"/api/url-exists?url={value}",
+                "data-parsley-remote-message": "This page doesn't seem to exist"
             }
         }) }}
     
@@ -67,7 +71,9 @@
             id: "twitter-url",
             name: "twitter-url",
             attributes: {
-                "data-hj-whitelist": ""
+                "data-hj-whitelist": "",
+                "data-parsley-remote":"/api/url-exists?url={value}",
+                "data-parsley-remote-message": "This page doesn't seem to exist"
             }
         }) }}
 
