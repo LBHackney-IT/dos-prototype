@@ -92,11 +92,17 @@ To advance the education of persons with learning disabilities, in particular, b
         <p>Blank</p>
         <h3 class="govuk-heading-s">Session information</h3>
         <p>Blank</p>
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        {{ govukButton({
-            text: "Approve and publish submission",
-            href: "/data-listing"
-        }) }}
+        <div class="sticky-buttons">
+            {{ govukButton({
+                text: "Approve and publish submission",
+                href: "/data-listing"
+            }) }}
+            {{ govukButton({
+                text: "Edit",
+                href: "./edit",
+                classes: "hackit-button--secondary"
+            }) }}
+        </div>
     </div>
 </div>
 

@@ -52,11 +52,17 @@ Rent (social landlord)</pre>
         {{diff('1 Atkins Square', '28-32 Ellingfort Rd')}}
         <h3 class="govuk-heading-s">Postcode</h3>
         {{diff('E8 1FA', 'E8 3PA')}}
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        {{ govukButton({
-            text: "Publish changes",
-            href: "/data-listing"
-        }) }}
+        <div class="sticky-buttons">
+            {{ govukButton({
+                text: "Publish changes",
+                href: "/data-listing"
+            }) }}
+            {{ govukButton({
+                text: "Edit",
+                href: "./edit",
+                classes: "hackit-button--secondary"
+            }) }}
+        </div>
     </div>
 </div>
 

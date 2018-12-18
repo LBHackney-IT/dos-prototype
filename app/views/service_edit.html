@@ -404,10 +404,17 @@
   
   {% endcall %}
 
-    {{ govukButton({
-    text: "Save and exit",
-    href: "/data-listing"
-    }) }}
+  <div class="sticky-buttons">
+      {{ govukButton({
+      text: "Save and exit",
+      href: "/data-listing"
+      }) }}
+        {{ govukButton({
+            text: "Edit",
+            href: "./edit",
+            classes: "hackit-button--secondary"
+      }) }}
+    </div>
 
     </div>
 </div>

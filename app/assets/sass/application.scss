@@ -97,3 +97,21 @@ ins {
 pre {
     white-space: pre-wrap; 
 }
+.govuk-button {
+    background-color: #00694f;
+}
+.hackit-button--secondary {
+    background-color: #a8a8a8;
+    color: #000 !important;
+    &:hover,
+    &:focus {
+        background-color: #999;
+    }
+}
+.sticky-buttons {
+    background-color: #FFF;
+    border-top: 1px solid #bfc1c3;
+    position: sticky;
+    bottom: -12px;
+    padding: 1rem 0 0;
+}
