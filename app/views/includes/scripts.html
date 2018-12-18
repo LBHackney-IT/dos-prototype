@@ -9,6 +9,23 @@
     $('.js-select2').select2();
 });
 </script>
+<script>
+  window.Parsley.addValidator('postcode', {
+    requirementType: 'string',
+    validateString: function(value, requirement) {
+        var postcode = value.match(/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$/) || [];
+        if (postcode.length > 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+    },
+    messages: {
+         en: 'The postcode entered is invalid.'
+    }
+});
+  </script>
 
 <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
 <!-- Hotjar Tracking Code for https://lbh-dos-prototypes.herokuapp.com -->
