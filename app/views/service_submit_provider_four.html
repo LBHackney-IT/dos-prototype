@@ -27,7 +27,7 @@
       </h1>
 
     
-
+  <form action="./five" method="post" data-parsley-validate>
 {% call govukFieldset({
     legend: {
       text: "Venue details",
@@ -101,7 +101,8 @@
       id: "address-postcode",
       name: "address-postcode",
       attributes: {
-          "data-hj-whitelist": ""
+          "data-hj-whitelist": "",
+          "data-parsley-postcode": ""
       }
     }) }}
   
@@ -119,10 +120,9 @@
   {% endcall %}
 
     {{ govukButton({
-    text: "Save and continue",
-    href: "./five"
+    text: "Save and continue"
     }) }}
-
+  </form>
     </div>
 </div>
 

@@ -26,6 +26,7 @@
         <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
       </h1>
 
+      <form action="/service-provider-actions/confirm" method="post" data-parsley-validate>
       {% call govukFieldset({
         legend: {
           text: "Date and time",
@@ -86,10 +87,9 @@
       {% endcall %}
 
     {{ govukButton({
-    text: "Save and finish",
-    href: "/service-provider-actions/confirm"
+    text: "Save and finish"
     }) }}
-
+</form>
     </div>
 </div>
 

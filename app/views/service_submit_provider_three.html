@@ -25,7 +25,7 @@
         Submit a new service 
         <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
       </h1>
-
+      <form action="./four" method="post" data-parsley-validate>
     {% call govukFieldset({
 
         legend: {
@@ -85,10 +85,9 @@
 
 
     {{ govukButton({
-    text: "Save and continue",
-    href: "./four"
+    text: "Save and continue"
     }) }}
-
+    </form
     </div>
 </div>
 

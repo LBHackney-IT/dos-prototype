@@ -25,7 +25,7 @@
         Submit a new service 
         <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
       </h1>
-
+      <form action="./three" method="post" data-parsley-validate>
     {{ govukInput({
     label: {
         text: "Title"
@@ -33,7 +33,8 @@
     id: "title",
     name: "title",
     attributes: {
-        "data-hj-whitelist": ""
+        "data-hj-whitelist": "",
+        "required": "required"
     }
     }) }}
 
@@ -50,10 +51,9 @@
     }) }}
 
     {{ govukButton({
-    text: "Save and continue",
-    href: "./three"
+    text: "Save and continue"
     }) }}
-
+    </form>
     </div>
 </div>
 

@@ -33,7 +33,7 @@
           isPageHeading: false
         }
       }) %}
-      
+      <form action="./six" method="post" data-parsley-validate>
       {{ govukInput({
           label: {
             text: 'Amount'
@@ -113,10 +113,9 @@
       {% endcall %}
 
     {{ govukButton({
-    text: "Save and continue",
-    href: "./six"
+    text: "Save and continue"
     }) }}
-
+    </form>
     </div>
 </div>
 
