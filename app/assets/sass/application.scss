@@ -103,6 +103,10 @@ pre {
 }
 .govuk-button {
     background-color: #00694f;
+    &:hover,
+    &:focus {
+        background-color: #003629;
+    }
 }
 .hackit-button--secondary {
     background-color: #a8a8a8;
