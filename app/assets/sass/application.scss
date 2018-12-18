@@ -79,14 +79,20 @@ $govuk-global-styles: true;
 }
 
 del {
-    text-decoration: none;
     color: #b30000;
     background: #fadad7;
+    text-decoration: none;
+    &::before {
+        content: '-';
+    }
 }
 ins {
     background: #eaf2c2;
     color: #406619;
     text-decoration: none;
+    &::before {
+        content: '+';
+    }
 }
 pre {
     white-space: pre-wrap; 
