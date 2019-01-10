@@ -29,15 +29,21 @@
     {% call govukFieldset({
 
         legend: {
-            text: "Web pages",
+            text: "Web pages and social media acounts",
             classes: "govuk-fieldset__legend--l",
-            isPageHeading: false
+            isPageHeading: false,
+            describedBy: "web-pages-info"
         }
         }) %}
 
+        <p id="web-pages-info">We'll use these URLs to pre-fill any information we can gather from existing web pages.</p>
+
         {{ govukInput({
             label: {
-                text: 'Website'
+                text: 'Website URL'
+            },
+            hint: {
+                text: 'Example: "https://www.hackney.gov.uk"'
             },
             type: 'url',
             id: "website-url",
@@ -51,7 +57,10 @@
     
         {{ govukInput({
             label: {
-                text: 'Facebook'
+                text: 'Facebook page URL'
+            },
+            hint: {
+                text: 'Example: "https://www.facebook.com/hackneycouncil"'
             },
             type: 'url',
             id: "facebook-url",
@@ -65,16 +74,26 @@
     
         {{ govukInput({
             label: {
-                text: 'Twitter'
+                text: 'Twitter account name'
             },
-            type: 'url',
-            id: "twitter-url",
-            name: "twitter-url",
-            attributes: {
-                "data-hj-whitelist": "",
-                "data-parsley-remote":"/api/url-exists?url={value}",
-                "data-parsley-remote-message": "This page doesn't seem to exist"
-            }
+            hint: {
+                text: 'Example: "hackneycouncil"'
+            },
+            type: 'text',
+            id: "twitter-acount",
+            name: "twitter-account"
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: 'Instagram account name'
+            },
+            hint: {
+                text: 'Example: "hackneycouncil"'
+            },
+            type: 'text',
+            id: "instragram-account",
+            name: "instragram-account"
         }) }}
 
     {% endcall %}
