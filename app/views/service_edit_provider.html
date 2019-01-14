@@ -27,7 +27,7 @@
           {{ title }} 
       </h1>
 
-
+    <h2 class="govuk-heading-l">Service information</h2>
     {{ govukInput({
     label: {
         text: "Title"
@@ -52,7 +52,62 @@
     }
     }) }}
 
+{% call govukFieldset({
 
+    legend: {
+        text: "Web pages and social media acounts",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: false
+    }
+    }) %}
+
+    {{ govukInput({
+        label: {
+            text: 'Website'
+        },
+        type: 'url',
+        id: "website-url",
+        name: "website-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: 'Facebook'
+        },
+        type: 'url',
+        id: "facebook-url",
+        name: "facebook-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: 'Twitter'
+        },
+        type: 'url',
+        id: "twitter-url",
+        name: "twitter-url",
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: 'Instagram account name'
+        },
+        type: 'text',
+        id: "instragram-account",
+        name: "instragram-account"
+    }) }}
+
+{% endcall %}
+    
     {% call govukFieldset({
 
         legend: {
@@ -110,41 +165,6 @@
 
     {% endcall %}
 
-    {{ govukInput({
-        label: {
-            text: 'Website'
-        },
-        type: 'url',
-        id: "website-url",
-        name: "website-url",
-        attributes: {
-            "data-hj-whitelist": ""
-        }
-    }) }}
-
-    {{ govukInput({
-        label: {
-            text: 'Facebook'
-        },
-        type: 'url',
-        id: "facebook-url",
-        name: "facebook-url",
-        attributes: {
-            "data-hj-whitelist": ""
-        }
-    }) }}
-
-    {{ govukInput({
-        label: {
-            text: 'Twitter'
-        },
-        type: 'url',
-        id: "twitter-url",
-        name: "twitter-url",
-        attributes: {
-            "data-hj-whitelist": ""
-        }
-    }) }}
 
 
 {% call govukFieldset({
