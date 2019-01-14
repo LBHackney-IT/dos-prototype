@@ -1,38 +1,13 @@
-{% extends "layout_hackney.html" %}
-{% from "input/macro.njk" import govukInput %}
-{% from "button/macro.njk" import govukButton %}
-{% from "back-link/macro.njk" import govukBackLink %}
-{% from "textarea/macro.njk" import govukTextarea %}
-{% from "fieldset/macro.njk" import govukFieldset %}
-{% from "select/macro.njk" import govukSelect %}
-{% from "checkboxes/macro.njk" import govukCheckboxes %}
-{% from "radios/macro.njk" import govukRadios %}
+{% extends "layout_service_submit_provider.html" %}
 
-{% block pageTitle %}
-  Service submit
-{% endblock %}
+{% block form %}
 
-{% block content %}
-
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-    {{ govukBackLink({
-        text: "Back",
-        href: "./three"
-    }) }}
-      <h1 class="govuk-heading-xl">
-        Submit a new service 
-        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
-      </h1>
-
-    
-  <form action="./five" method="post" data-parsley-validate>
+<form action="./five" method="post" data-parsley-validate>
 {% call govukFieldset({
     legend: {
       text: "Venue details",
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: false
+      classes: "govuk-fieldset__legend--xl",
+      isPageHeading: true
     }
   }) %}
   
@@ -123,7 +98,5 @@
     text: "Save and continue"
     }) }}
   </form>
-    </div>
-</div>
 
 {% endblock %}

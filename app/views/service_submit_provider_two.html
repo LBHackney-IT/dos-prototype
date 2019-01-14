@@ -1,18 +1,6 @@
-{% extends "layout_hackney.html" %}
-{% from "input/macro.njk" import govukInput %}
-{% from "button/macro.njk" import govukButton %}
-{% from "back-link/macro.njk" import govukBackLink %}
-{% from "textarea/macro.njk" import govukTextarea %}
-{% from "fieldset/macro.njk" import govukFieldset %}
-{% from "select/macro.njk" import govukSelect %}
-{% from "checkboxes/macro.njk" import govukCheckboxes %}
-{% from "radios/macro.njk" import govukRadios %}
+{% extends "layout_service_submit_provider.html" %}
 
-{% block pageTitle %}
-  Service submit
-{% endblock %}
-
-{% block content %}
+{% block form %}
 
 {% set titleValue = "" %}
 {% if facebookData.title %}
@@ -22,18 +10,9 @@
 {% if facebookData.description %}
     {% set descValue = facebookData.description %}
 {% endif %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
 
-    {{ govukBackLink({
-        text: "Back",
-        href: "./one"
-    }) }}
-      <h1 class="govuk-heading-xl">
-        Submit a new service 
-        <span class="govuk-caption-xl">Step {{ step }} of {{ steps }}</span>
-      </h1>
-      <form action="./three" method="post" data-parsley-validate>
+<h1 class="govuk-heading-xl">Service information</h1>
+    <form action="./three" method="post" data-parsley-validate>
     {{ govukInput({
     label: {
         text: "Title"
@@ -64,7 +43,5 @@
     text: "Save and continue"
     }) }}
     </form>
-    </div>
-</div>
 
 {% endblock %}

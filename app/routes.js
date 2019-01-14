@@ -39,6 +39,7 @@ router.all('/service-provider-actions/:serviceId/edit', function (req, res) {
 router.all('/service-provider-actions/submit/:step', function (req, res) {
     var step = req.params.step;
     var steps = 'six';
+    var backUrl = getPreviousStepUrl(step);
     var formData = req.body;
     if(formData['facebook-url'] && formData['facebook-url'] !== '') {
         scrapeFacebook(formData['facebook-url'], function(facebookData){
@@ -103,6 +104,31 @@ scrapeFacebook = function(url, cb) {
         console.log('HTTP Error: ' + response.statusCode);
         }
     });
+}
+
+getPreviousStepUrl = function(currentStep) {
+    switch (currentStep) {
+        case 'one':
+            return '/service-provider-actions'
+            break;
+        case 'two':
+            return './one'
+            break;
+        case 'three':
+            return './two'
+            break;
+        case 'four':
+            return './three'
+            break;
+        case 'five':
+            return './four'
+            break;
+        case 'six':
+            return './five'
+            break;
+        default:
+            console.log('Sorry, we are out of ' + expr + '.');
+    }
 }
 
 module.exports = router
