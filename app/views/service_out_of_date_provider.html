@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% set title = 'Bikur Cholim' %}
+{% set title = 'Service ' + serviceId %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-hirds">
         {{ govukBackLink({
@@ -14,8 +14,8 @@
             href: "/service-provider-actions"
         }) }}
       <h1 class="govuk-heading-xl">
-        Out of date 
-        <span class="govuk-caption-xl">{{ title }}</span>
+        <span class="govuk-caption-xl">Out of date</span>
+        {{ title }}
       </h1>
 
       <h2 class="govuk-heading-m">

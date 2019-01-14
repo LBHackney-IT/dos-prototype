@@ -14,7 +14,7 @@
 
 {% block content %}
 
-{% set title = 'Clapton Park advice session' %}
+{% set title = 'Service ' + serviceId %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -23,32 +23,10 @@
         href: "/service-provider-actions"
     }) }}
       <h1 class="govuk-heading-xl">
-        Edit 
-        <span class="govuk-caption-xl">{{ title }}</span>
+          <span class="govuk-caption-xl">Edit</span>
+          {{ title }} 
       </h1>
 
-      {{ govukRadios({
-        classes: "govuk-radios--inline",
-        idPrefix: "status",
-        name: "status",
-        fieldset: {
-          legend: {
-            text: "Status",
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        items: [
-          {
-            value: "live",
-            text: "Live",
-            checked: true
-          },
-          {
-            value: "archived",
-            text: "Archived"
-          }
-        ]
-      }) }}
 
     {{ govukInput({
     label: {

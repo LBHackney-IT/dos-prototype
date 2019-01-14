@@ -7,6 +7,17 @@ module.exports = function (env) {
    */
   var filters = {}
 
+  filters.actionLink = function(serviceID, outofdate=false,) {
+    var editLink = '<a href="/service-provider-actions/' + serviceID + '/edit" class="govuk-link">Edit</a>';
+    var outofdateLink = '<a href="/service-provider-actions/' + serviceID + '/out-of-date" class="govuk-link">View out of date information</a>';
+    if(outofdate) {
+      return editLink + '<br />' + outofdateLink;
+    }
+    else {
+      return editLink;
+    }
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

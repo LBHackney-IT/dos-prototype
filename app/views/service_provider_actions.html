@@ -2,13 +2,8 @@
 {% from "table/macro.njk" import govukTable %}
 {% from "button/macro.njk" import govukButton %}
 
-{% set editLink = '<a href="/service-provider-actions/0/edit" class="govuk-link">Edit</a>' %}
-{% set outofdateLink = '<a href="/service-provider-actions/0/out-of-date" class="govuk-link">View out of date information</a>' %}
-
-{% set dangerActions = [editLink, outofdateLink] | join('<br />')  %}
-
 {% block content %}
-<h1 class="govuk-heading-xl">My services</h1>
+<h1 class="govuk-heading-xl">Services for your organisation </h1>
 
 {% if message %}
 {% from "panel/macro.njk" import govukPanel %}
@@ -23,7 +18,7 @@
     classes: "govuk-button--start"
 }) }}
 
-<!-- {{ govukTable({
+{{ govukTable({
   firstCellIsHeader: true,
   head: [
     {
@@ -45,7 +40,7 @@
   rows: [
     [
       {
-        text: "Clapton Park advice session"
+        text: "Service 1"
       },
       {
         html: "<strong class='govuk-tag hackit-tag--mundane'>Live</strong>"
@@ -57,12 +52,12 @@
         text: "13:56 11/01/2018"
       },
       {
-        html: editLink
+        html: '1' | actionLink
       }
     ],
     [
       {
-        text: "Bikur Cholim"
+        text: "Service 2"
       },
       {
         html: "<strong class='govuk-tag hackit-tag--danger'>Out of date</strong>"
@@ -74,12 +69,12 @@
         text: "12:14 13/02/2017"
       },
       {
-        html: dangerActions
+        html: '2' | actionLink(true)
       }
     ],
     [
       {
-        text: "Peter Bedford Housing Association"
+        text: "Service 3"
       },
       {
         html: "<strong class='govuk-tag hackit-tag--mundane'>Archived</strong>"
@@ -91,9 +86,9 @@
         text: "08:36 27/02/2016"
       },
       {
-        html: editLink
+        html: '3' | actionLink
       }
     ]
   ]
 }) }}
-{% endblock %} -->
+{% endblock %}
