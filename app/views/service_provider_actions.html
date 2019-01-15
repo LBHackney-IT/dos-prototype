@@ -11,14 +11,21 @@
         titleText: title,
         text: message
     }) }}
-{% endif %}
-{{ govukButton({
-  text: "Set up organisation listing",
-  href: "/service-provider-actions/submit/one",
-  classes: "govuk-button--start"
-}) }}
+    {{ govukButton({
+      text: "Add service",
+      href: "/service-provider-actions/add-service",
+      classes: "govuk-button--start"
+    }) }}
+  {% else %}
+    {{ govukButton({
+      text: "Set up organisation listing",
+      href: "/service-provider-actions/submit/one",
+      classes: "govuk-button--start"
+    }) }}
+  {% endif %}
 
 {% if dummyListings %}
+<h2 class="govuk-heading-l">Your services</h2>
 {{ govukTable({
   firstCellIsHeader: true,
   head: [

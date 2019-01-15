@@ -1,0 +1,182 @@
+{% extends "layout_hackney.html" %}
+
+{% block pageTitle %}
+    Add service
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">
+    Add service 
+</h1>
+<form action="/service-provider-actions" method="post" data-parsley-validate>
+{{ govukInput({
+      label: {
+          text: 'Service name'
+      },
+      type: 'text',
+      id: "service-name",
+      name: "service-name",
+      attributes: {
+          "data-hj-whitelist": ""
+        }
+  }) }}
+  
+  {{ govukTextarea({
+      label: {
+          text: 'Service description'
+        },
+      type: 'text',
+      id: "service-desc",
+      name: "service-desc",
+      attributes: {
+          "data-hj-whitelist": ""
+        }
+  }) }}
+  
+  {% call govukFieldset({
+    legend: {
+        text: "Add event",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: false
+    }
+}) %}
+
+{{ govukInput({
+      label: {
+          text: 'Details'
+      },
+      type: 'text',
+      id: "event-details",
+      name: "event-details",
+      attributes: {
+          "data-hj-whitelist": ""
+        }
+  }) }}
+
+  {{ govukSelect({
+    id: "venue",
+    name: "venue",
+    label: {
+        text: "Venue"
+    },
+    items: [
+        {
+        value: "org-venue",
+        text: "Organisation venue"
+        },
+        {
+        value: "add-another-venue",
+        text: "Add another venue"
+        }
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+    }) }}
+
+{% call govukFieldset({
+    legend: {
+        text: "Date and time",
+        classes: "govuk-fieldset__legend--m",
+        isPageHeading: false
+    }
+}) %}
+<div class="govuk-grid-row">
+{{ govukDateInput({
+    id: "start-date",
+    namePrefix: "start-date",
+    formGroup: {
+        classes: "govuk-grid-column-one-half"
+    },
+    fieldset: {
+        legend: {
+            text: "Start date",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+        }
+    }
+}) }}
+{{ govukDateInput({
+    id: "end-date",
+    namePrefix: "end-date",
+    formGroup: {
+        classes: "govuk-grid-column-one-half"
+    },
+    fieldset: {
+        legend: {
+            text: "End date",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+        }
+    }
+}) }}
+</div>
+
+<div class="govuk-grid-row">
+    {{ govukInput({
+    formGroup: {
+        classes: "govuk-grid-column-one-half"
+    },
+    label: {
+        text: 'Start time',
+        classes: "govuk-!-font-weight-bold"
+    },
+    type: 'time',
+    id: "event-start-time",
+    name: "event-start-time",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+
+{{ govukInput({
+    formGroup: {
+        classes: "govuk-grid-column-one-half"
+    },
+    label: {
+        text: 'End time',
+        classes: "govuk-!-font-weight-bold"
+    },
+    type: 'time',
+    id: "event-end-time",
+    name: "event-end-time",
+    attributes: {
+        "data-hj-whitelist": ""
+        }
+}) }}
+</div>
+
+{{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "repeat",
+    name: "repeat",
+    fieldset: {
+    legend: {
+        text: "Does this event repeat?",
+        classes: "govuk-fieldset__legend--s"
+      }
+  },
+  items: [
+  {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+        value: "no",
+        text: "No",
+        checked: true
+  }
+  ]
+}) }}
+
+{% endcall %}
+
+
+{% endcall %}
+
+  {{ govukButton({
+    text: "Submit service"
+  }) }}
+  
+</form>
+{% endblock %}

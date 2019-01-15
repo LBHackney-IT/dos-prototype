@@ -63,8 +63,12 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
     }
 })
 
+router.all('/service-provider-actions/add-service', function (req, res) {
+    res.render('service_provider_add_service');
+})
+
 router.all('/service-provider-actions/confirm', function (req, res) {
-    res.render('service_provider_actions', {'title': 'Submission successful','message' : 'You\'ll recieve an email shortly.'});
+    res.render('service_provider_actions', {'title': 'Submission successful','message' : 'Your organisation details have been saved.'});
 })
 
 router.all('/service-provider/register', function (req, res) {
