@@ -80,7 +80,49 @@
           "data-parsley-postcode": ""
       }
     }) }}
-  
+    
+    {{ govukCheckboxes({
+      idPrefix: "accessible-facilities",
+      name: "accessible-facilities",
+      fieldset: {
+        legend: {
+          text: "Which accessible facilities are available?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "Select all that apply."
+      },
+      items: [
+        {
+          value: "baby-changing",
+          text: "Baby changing"
+        },
+        {
+          value: "wheelchair-access",
+          text: "Wheelchair access"
+        },
+        {
+          value: "adapted toilet",
+          text: "Adapted toilet"
+        },
+        {
+          value: "hoist",
+          text: "Hoist"
+        },
+        {
+          value: "1-1-staff",
+          text: "1:1 staff ratios if needed"
+        },
+        {
+          value: "dont-know",
+          text: "Don't know"
+        }
+      ]
+    }) }}
+    {% endcall %}
+    
     {{ govukTextarea({
       name: "venue-details",
       id: "venue-details",
@@ -91,8 +133,7 @@
           "data-hj-whitelist": ""
       }
   }) }}
-  
-  {% endcall %}
+
 
     {{ govukButton({
     text: "Save and continue"
