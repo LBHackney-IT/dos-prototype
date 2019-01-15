@@ -11,7 +11,7 @@
     {% set descValue = facebookData.description %}
 {% endif %}
 
-<h1 class="govuk-heading-xl">Service information</h1>
+<h1 class="govuk-heading-xl">Organisation details</h1>
     <form action="./three" method="post" data-parsley-validate>
     {{ govukInput({
     label: {
@@ -33,6 +33,9 @@
     value: descValue,
     label: {
         text: "Description"
+    },
+    hint: {
+        text: "Briefly describe your organisation and what it does."
     },
     attributes: {
         "data-hj-whitelist": ""

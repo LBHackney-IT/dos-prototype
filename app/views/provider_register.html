@@ -1,0 +1,79 @@
+{% extends "layout_hackney.html" %}
+
+{% block pageTitle %}
+    Register as a service provider 
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">
+    Register as a service provider 
+</h1>
+<form action="/service-provider-actions" method="post" data-parsley-validate>
+    {{ govukInput({
+      label: {
+          text: 'Email'
+      },
+      type: 'email',
+      id: "register-email",
+      name: "register-email",
+      attributes: {
+          "data-hj-whitelist": ""
+        }
+  }) }}
+
+  {{ govukInput({
+      label: {
+          text: 'Password'
+      },
+      type: 'pass',
+      id: "register-pass",
+      name: "register-pass"
+  }) }}
+
+{% call govukFieldset({
+    legend: {
+      text: "Personal contact information",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: false
+    }
+}) %}
+<p>We'll use this information to contact you to validate and update the information you've submitted about your orgnisation.</p>
+{{ govukInput({
+    label: {
+    text: 'Name'
+    },
+    id: "contact-name",
+    name: "contact-name",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+
+{{ govukInput({
+    label: {
+    text: 'Position'
+    },
+    id: "contact-position",
+    name: "contact-position",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+
+{{ govukInput({
+    label: {
+    text: 'Telephone number'
+    },
+    type: 'tel',
+    id: "contact-telephone",
+    name: "contact-telephone"
+}) }}
+
+{% endcall %}
+
+  {{ govukButton({
+    text: "Register"
+  }) }}
+  
+</form>
+{% endblock %}

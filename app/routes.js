@@ -25,7 +25,7 @@ router.all('/data-listing/:serviceId/submission', function (req, res) {
 })
 
 router.all('/service-provider-actions', function (req, res) {
-    res.render('service_provider_actions');
+    res.render('service_provider_actions', {'dummyListings' : req.query.dummylistings});
 })
 
 router.all('/service-provider-actions/:serviceId/out-of-date', function (req, res) {
@@ -65,6 +65,10 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
 
 router.all('/service-provider-actions/confirm', function (req, res) {
     res.render('service_provider_actions', {'title': 'Submission successful','message' : 'You\'ll recieve an email shortly.'});
+})
+
+router.all('/service-provider/register', function (req, res) {
+    res.render('provider_register');
 })
 
 router.all('/api/url-exists', function (req, res) {

@@ -3,7 +3,7 @@
 {% from "button/macro.njk" import govukButton %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">Services for your organisation </h1>
+<h1 class="govuk-heading-xl">Your organisation </h1>
 
 {% if message %}
 {% from "panel/macro.njk" import govukPanel %}
@@ -13,15 +13,16 @@
     }) }}
 {% endif %}
 {{ govukButton({
-    text: "Submit a new service",
-    href: "/service-provider-actions/submit/one",
-    classes: "govuk-button--start"
+  text: "Set up organisation listing",
+  href: "/service-provider-actions/submit/one",
+  classes: "govuk-button--start"
 }) }}
 
+{% if dummyListings %}
 {{ govukTable({
   firstCellIsHeader: true,
   head: [
-    {
+  {
       text: "Name"
     },
     {
@@ -31,15 +32,15 @@
       text: "Type"
     },
     {
-        text: "Last updated"
+      text: "Last updated"
     },
     {
         text: "Actions"
     }
-  ],
-  rows: [
+    ],
+    rows: [
     [
-      {
+    {
         text: "Service 1"
       },
       {
@@ -89,6 +90,7 @@
         html: '3' | actionLink
       }
     ]
-  ]
+    ]
 }) }}
+{% endif %}
 {% endblock %}
