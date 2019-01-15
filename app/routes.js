@@ -43,11 +43,11 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
     var formData = req.body;
     if(formData['facebook-url'] && formData['facebook-url'] !== '') {
         scrapeFacebook(formData['facebook-url'], function(facebookData){
-            console.log(facebookData);
             res.render('service_submit_provider_' + step, 
             {
                 'step' : step, 
                 'steps' : steps,
+                'backUrl' : backUrl,
                 'formData': formData,
                 'facebookData' : facebookData
             });    
@@ -57,6 +57,7 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
         {
             'step' : step, 
             'steps' : steps,
+            'backUrl' : backUrl,
             'formData': formData
         });
     }
