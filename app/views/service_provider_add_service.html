@@ -171,6 +171,79 @@
 
 {% endcall %}
 
+{% call govukFieldset({
+    legend: {
+        text: "Costs",
+        classes: "govuk-fieldset__legend--m",
+        isPageHeading: false
+    }
+}) %}
+
+{{ govukInput({
+    label: {
+        text: 'Amount'
+    },
+    hint: {
+        text: 'Example: £5.99'
+    },
+    type: 'text',
+    id: "cost-amount",
+    name: "cost-amount",
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+
+{{ govukSelect({
+    id: "cost-type",
+    name: "cost-type",
+    label: {
+        text: "Cost type"
+    },
+    items: [
+        {
+        value: "deposit",
+        text: "Desposit"
+        },
+        {
+        value: "per-day",
+        text: "Per day"
+        },
+        {
+        value: "per-hour",
+        text: "Per hour"
+        },
+        {
+        value: "per-month",
+        text: "Per month"
+        },
+        {
+        value: "per-session",
+        text: "Per session"
+        },
+        {
+        value: "per-term",
+        text: "Per term"
+        },
+        {
+        value: "per-week",
+        text: "Per week"
+        },
+        {
+        value: "per-year",
+        text: "Per year"
+        },
+        {
+        value: "registration-fee",
+        text: "Registration fee",
+        selected: true
+        }
+    ],
+    attributes: {
+        "data-hj-whitelist": ""
+    }
+}) }}
+{% endcall %}
 
 {% endcall %}
 
