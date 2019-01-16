@@ -67,6 +67,10 @@ router.all('/service-provider-actions/add-service', function (req, res) {
     res.render('service_provider_add_service');
 })
 
+router.all('/service-provider-actions/add-events', function (req, res) {
+    res.render('service_provider_add_events');
+})
+
 router.all('/service-provider-actions/confirm', function (req, res) {
     res.render('service_provider_actions', {'title': 'Submission successful','message' : 'Your organisation details have been saved.'});
 })
