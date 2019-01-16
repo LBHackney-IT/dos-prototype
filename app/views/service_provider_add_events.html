@@ -10,12 +10,12 @@
 </h1>
 <form action="/service-provider-actions" method="post" data-parsley-validate>
 
-<div class="js-form-add-another">
+<div class="js-form-add-another" data-form-add-another-noun="event">
 {% call govukFieldset({
-    classes : "js-add-another__initial-instance",
+    classes : "js-form-add-another__instance",
     legend: {
-        text: "Event one",
-        classes: "govuk-fieldset__legend--xl",
+        html: "Event <span class=\"js-form-add-another__number\">1</span>",
+        classes: "govuk-fieldset__legend--l",
         isPageHeading: false
     }
 }) %}
@@ -25,16 +25,14 @@
           text: 'Details'
       },
       type: 'text',
-      id: "event-details",
-      name: "event-details",
+      name: "events[1].details",
       attributes: {
           "data-hj-whitelist": ""
         }
   }) }}
 
   {{ govukSelect({
-    id: "venue",
-    name: "venue",
+    name: "events[1].venue",
     label: {
         text: "Venue"
     },
@@ -62,8 +60,7 @@
 }) %}
 <div class="govuk-grid-row">
 {{ govukDateInput({
-    id: "start-date",
-    namePrefix: "start-date",
+    namePrefix: "events[1].start-date",
     formGroup: {
         classes: "govuk-grid-column-one-half"
     },
@@ -76,8 +73,7 @@
     }
 }) }}
 {{ govukDateInput({
-    id: "end-date",
-    namePrefix: "end-date",
+    namePrefix: "events[1].end-date",
     formGroup: {
         classes: "govuk-grid-column-one-half"
     },
@@ -101,8 +97,7 @@
         classes: "govuk-!-font-weight-bold"
     },
     type: 'time',
-    id: "event-start-time",
-    name: "event-start-time",
+    name: "events[1].start-time",
     attributes: {
         "data-hj-whitelist": ""
     }
@@ -117,8 +112,7 @@
         classes: "govuk-!-font-weight-bold"
     },
     type: 'time',
-    id: "event-end-time",
-    name: "event-end-time",
+    name: "events[1].end-time",
     attributes: {
         "data-hj-whitelist": ""
         }
@@ -127,8 +121,8 @@
 
 {{ govukRadios({
     classes: "govuk-radios--inline",
-    idPrefix: "repeat",
-    name: "repeat",
+    idPrefix: "events[1]repeat",
+    name: "events[1].repeat",
     fieldset: {
     legend: {
         text: "Does this event repeat?",
@@ -166,16 +160,14 @@
         text: 'Example: £5.99'
     },
     type: 'text',
-    id: "cost-amount",
-    name: "cost-amount",
+    name: "events[1].cost-amount",
     attributes: {
         "data-hj-whitelist": ""
     }
 }) }}
 
 {{ govukSelect({
-    id: "cost-type",
-    name: "cost-type",
+    name: "events[1].cost-type",
     label: {
         text: "Cost type"
     },
