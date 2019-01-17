@@ -1,0 +1,45 @@
+{% extends "layout_hackney.html" %}
+
+{% block pageTitle %}
+  Organisation permissions
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-hirds">
+        {{ govukBackLink({
+            text: "Back",
+            href: "/service-provider-actions/"
+        }) }}
+      <h1 class="govuk-heading-xl">
+        Permissions 
+        <span class="govuk-caption-xl">{{ title }}</span>
+        <span class="govuk-caption-xl">
+            {% if session['org-title'] %}
+              {{ session['org-title'] }}
+            {% else %}
+              Your organisation
+            {% endif %} 
+        </span>
+      </h1>
+
+      <p>Add an email address of a colleague to give them access to manage this organisation's services and events.</p>
+    <form action="/service-provider-actions/confirm" method="post" data-parsley-validate>
+      <input name="confirmation-message" type="hidden" value="Organisation permissions saved">
+      {{ govukInput({
+          label: {
+              text: 'Email'
+          },
+          type: 'email',
+          name: "permissions-email[0]",
+          attributes: {
+              "data-hj-whitelist": ""
+            }
+        }) }}
+        
+        {{ govukButton({
+          text: "Save"
+        }) }}
+      </form>
+{% endblock %}

@@ -25,7 +25,7 @@ router.all('/data-listing/:serviceId/submission', function (req, res) {
 })
 
 router.all('/service-provider-actions', function (req, res) {
-    res.render('service_provider_actions', {'dummyListings' : req.query.dummylistings});
+    res.render('service_provider_actions', {'dummyListings' : req.query.dummylistings, navigation: providerNavigation});
 })
 
 router.all('/service-provider-actions/:serviceId/out-of-date', function (req, res) {
@@ -71,6 +71,10 @@ router.all('/service-provider-actions/add-events', function (req, res) {
     res.render('service_provider_add_events');
 })
 
+router.all('/service-provider-actions/org-permissions', function (req, res) {
+    res.render('service_provider_org_permissions');
+})
+
 router.all('/service-provider-actions/confirm', function (req, res) {
     var session = req.session.data;
     console.log(session);
@@ -79,7 +83,7 @@ router.all('/service-provider-actions/confirm', function (req, res) {
         message = 'Your information has been saved.';
     }
     var ctas = req.body['ctas'];
-    res.render('service_provider_actions', {'title': 'Submission successful','message' : message,  'ctas': ctas, 'session': session});
+    res.render('service_provider_actions', {'title': 'Submission successful','message' : message,  'ctas': ctas, 'session': session, navigation: providerNavigation});
 })
 
 router.all('/service-provider/register', function (req, res) {
@@ -143,5 +147,20 @@ getPreviousStepUrl = function(currentStep) {
             return '/service-provider-actions';
     }
 }
+
+var providerNavigation = [
+    {
+    href: "/service-provider/register",
+    text: "Your account details"
+    },
+    {
+    href: "/service-provider-actions/submit/one",
+    text: "Organisation details"
+    },
+    {
+    href: "/service-provider-actions/org-permissions",
+    text: "Organisation permissions"
+    }
+];
 
 module.exports = router
