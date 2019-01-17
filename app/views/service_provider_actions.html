@@ -4,7 +4,16 @@
 {% from "panel/macro.njk" import govukPanel %}
 
 {% block content %}
-<h1 class="govuk-heading-xl">Your organisation </h1>
+
+<h1 class="govuk-heading-xl">
+  {% if session['org-title'] %}
+    {{ session['org-title'] }}
+  {% else %}
+    Your organisation
+  {% endif %} 
+</h1>
+
+
 
 {% if message %}
   {{ govukPanel({
