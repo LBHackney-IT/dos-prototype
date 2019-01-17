@@ -38,7 +38,7 @@ router.all('/service-provider-actions/:serviceId/edit', function (req, res) {
 
 router.all('/service-provider-actions/submit/:step', function (req, res) {
     var step = req.params.step;
-    var steps = 'six';
+    var steps = 'four';
     var backUrl = getPreviousStepUrl(step);
     var formData = req.body;
     if(formData['facebook-url'] && formData['facebook-url'] !== '') {
@@ -72,7 +72,11 @@ router.all('/service-provider-actions/add-events', function (req, res) {
 })
 
 router.all('/service-provider-actions/confirm', function (req, res) {
-    res.render('service_provider_actions', {'title': 'Submission successful','message' : 'Your organisation details have been saved.'});
+    var message = req.body['confirmation-message'];
+    if(!message) {
+        message = 'Your information has been saved.';
+    }
+    res.render('service_provider_actions', {'title': 'Submission successful','message' : message});
 })
 
 router.all('/service-provider/register', function (req, res) {
@@ -107,7 +111,6 @@ scrapeFacebook = function(url, cb) {
         throw (error);
         }
         if (response.statusCode === 200) {
-        // console.log(JSON.stringify(body, null, 2));
         const $ = cheerio.load(body)
         let facebookData = {};
         facebookData.title = $('#pageTitle').text().replace(' | Facebook', '');
@@ -133,14 +136,8 @@ getPreviousStepUrl = function(currentStep) {
         case 'four':
             return './three'
             break;
-        case 'five':
-            return './four'
-            break;
-        case 'six':
-            return './five'
-            break;
         default:
-            console.log('Sorry, we are out of ' + expr + '.');
+            return '/service-provider-actions';
     }
 }
 

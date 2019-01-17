@@ -2,7 +2,8 @@
 
 {% block form %}
 
-<form action="./five" method="post" data-parsley-validate>
+<form action="/service-provider-actions/confirm" method="post" data-parsley-validate>
+<input name="confirmation-message" type="hidden" value="Organisation information saved">
 {% call govukFieldset({
     legend: {
       text: "Venue details",
