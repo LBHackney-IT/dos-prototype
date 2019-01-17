@@ -47,6 +47,7 @@ $govuk-global-styles: true;
     background-color: none;
     border-bottom: none;
     padding: 0;
+    margin-bottom: 0;
 }
 .govuk-header__logotype-crown {
     display: none;
@@ -56,6 +57,9 @@ $govuk-global-styles: true;
 }
 .govuk-header__link--homepage {
     display: block;
+}
+.govuk-header__link--service-name {
+    margin: 0;
 }
 .govuk-header__logo {
     padding: 2em 0 2em;
