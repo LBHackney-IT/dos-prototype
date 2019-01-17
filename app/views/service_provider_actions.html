@@ -1,28 +1,33 @@
 {% extends "layout_hackney.html" %}
 {% from "table/macro.njk" import govukTable %}
 {% from "button/macro.njk" import govukButton %}
+{% from "panel/macro.njk" import govukPanel %}
 
 {% block content %}
 <h1 class="govuk-heading-xl">Your organisation </h1>
 
 {% if message %}
-{% from "panel/macro.njk" import govukPanel %}
-    {{ govukPanel({
-        titleText: title,
-        text: message
-    }) }}
+  {{ govukPanel({
+      titleText: title,
+      text: message
+  }) }}
+  {% endif %}
+  
+  {% if ctas %}
+    {% for cta in ctas %}
     {{ govukButton({
-      text: "Add service",
-      href: "/service-provider-actions/add-service",
+      text: cta['text'],
+      href: cta['url'],
       classes: "govuk-button--start"
     }) }}
+    {% endfor %}
   {% else %}
     {{ govukButton({
       text: "Set up organisation listing",
       href: "/service-provider-actions/submit/one",
       classes: "govuk-button--start"
     }) }}
-  {% endif %}
+{% endif %}
 
 {% if dummyListings %}
 <h2 class="govuk-heading-l">Your services</h2>

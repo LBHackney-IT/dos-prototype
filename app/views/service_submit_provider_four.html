@@ -4,6 +4,9 @@
 
 <form action="/service-provider-actions/confirm" method="post" data-parsley-validate>
 <input name="confirmation-message" type="hidden" value="Organisation information saved">
+<input name="ctas[0][text]" type="hidden" value="Add a service">
+<input name="ctas[0][url]" type="hidden" value="/service-provider-actions/add-service">
+
 {% call govukFieldset({
     legend: {
       text: "Venue details",

@@ -9,7 +9,12 @@
     Add service 
 </h1>
 <form action="/service-provider-actions/add-events" method="post" data-parsley-validate>
-{{ govukInput({
+<input name="confirmation-message" type="hidden" value="Service information saved">
+<input name="ctas[0][text]" type="hidden" value="Add event information">
+<input name="ctas[0][url]" type="hidden" value="/service-provider-actions/add-events">
+<input name="ctas[1][text]" type="hidden" value="Add another service">
+<input name="ctas[1][url]" type="hidden" value="/service-provider-actions/add-service">
+    {{ govukInput({
       label: {
           text: 'Service name'
       },
@@ -40,7 +45,7 @@
   {{ govukButton({
     text: "Save and finish",
     attributes: {
-        formaction: "/service-provider-actions"
+        formaction: "/service-provider-actions/confirm"
     }
   }) }}
 

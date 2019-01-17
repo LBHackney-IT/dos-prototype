@@ -72,11 +72,13 @@ router.all('/service-provider-actions/add-events', function (req, res) {
 })
 
 router.all('/service-provider-actions/confirm', function (req, res) {
+    // console.log(req.body);
     var message = req.body['confirmation-message'];
     if(!message) {
         message = 'Your information has been saved.';
     }
-    res.render('service_provider_actions', {'title': 'Submission successful','message' : message});
+    var ctas = req.body['ctas'];
+    res.render('service_provider_actions', {'title': 'Submission successful','message' : message,  'ctas': ctas});
 })
 
 router.all('/service-provider/register', function (req, res) {

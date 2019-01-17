@@ -9,7 +9,11 @@
     Add events 
 </h1>
 <form action="/service-provider-actions/confirm" method="post" data-parsley-validate>
-<input name="confirmation-message" type="hidden" value="Service information saved">
+<input name="confirmation-message" type="hidden" value="Event information saved">
+<input name="ctas[0][text]" type="hidden" value="Add another event">
+<input name="ctas[0][url]" type="hidden" value="/service-provider-actions/add-events">
+<input name="ctas[1][text]" type="hidden" value="Add another service">
+<input name="ctas[1][url]" type="hidden" value="/service-provider-actions/add-service">
 <div class="js-form-add-another" data-form-add-another-noun="event">
 {% call govukFieldset({
     classes : "js-form-add-another__instance",
@@ -25,7 +29,7 @@
           text: 'Details'
       },
       type: 'text',
-      name: "events[1].details",
+      name: "events[1]['details']",
       attributes: {
           "data-hj-whitelist": ""
         }
