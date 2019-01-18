@@ -6,8 +6,26 @@
 <link href="/public/javascripts/select2.min.css" rel="stylesheet" />
 <script src="/public/javascripts/select2.min.js"></script>
 <script src="/public/javascripts/form-add-another.js"></script>
-<link rel="stylesheet" type="text/css" href="/public/javascripts/pca-3.7.0.css" />
-<script type="text/javascript" src="/public/javascripts/pca-3.7.0.js"></script>
+
+{% if pcaKey %}
+  <link rel="stylesheet" type="text/css" href="/public/javascripts/pca-3.7.0.css" />
+  <script type="text/javascript" src="/public/javascripts/pca-3.7.0.js"></script>
+  <script>
+  var fields = [
+      { element: "search", field: "" },
+      { element: "venue-name", field: "Company", mode: pca.fieldMode.DEFAULT | pca.fieldMode.PRESERVE },
+      { element: "address-line-1", field: "Line1" },
+      { element: "address-line-2", field: "Line2", mode: pca.fieldMode.POPULATE },
+      { element: "address-town", field: "City", mode: pca.fieldMode.POPULATE },
+      { element: "address-county", field: "Province", mode: pca.fieldMode.POPULATE },
+      { element: "address-postcode", field: "PostalCode" }
+      // { element: "country", field: "CountryName", mode: pca.fieldMode.COUNTRY }
+  ];
+  var control = new pca.Address(fields,
+  { key: "WC93-KY92-WA98-PA89", search: { countries: "GB" }, setCountryByIP: false });
+  </script>
+{% endif %}
+
 <script>$(document).ready(function() {
     $('.js-select2').select2();
 });
@@ -29,20 +47,6 @@
     }
 });
   </script>
-<script>
-var fields = [
-    { element: "search", field: "" },
-    { element: "venue-name", field: "Company", mode: pca.fieldMode.DEFAULT | pca.fieldMode.PRESERVE },
-    { element: "address-line-1", field: "Line1" },
-    { element: "address-line-2", field: "Line2", mode: pca.fieldMode.POPULATE },
-    { element: "address-town", field: "City", mode: pca.fieldMode.POPULATE },
-    { element: "address-county", field: "Province", mode: pca.fieldMode.POPULATE },
-    { element: "address-postcode", field: "PostalCode" }
-    // { element: "country", field: "CountryName", mode: pca.fieldMode.COUNTRY }
-];
-var control = new pca.Address(fields,
-{ key: "WC93-KY92-WA98-PA89", search: { countries: "GB" }, setCountryByIP: false });
-</script>
 
 <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
 <!-- Hotjar Tracking Code for https://lbh-dos-prototypes.herokuapp.com -->

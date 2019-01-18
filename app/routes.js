@@ -49,7 +49,8 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
                 'steps' : steps,
                 'backUrl' : backUrl,
                 'formData': formData,
-                'facebookData' : facebookData
+                'facebookData' : facebookData,
+                'pcaKey' : process.env.PCA_API_KEY
             });    
         });
     } else {
@@ -58,7 +59,8 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
             'step' : step, 
             'steps' : steps,
             'backUrl' : backUrl,
-            'formData': formData
+            'formData': formData,
+            'pcaKey' : process.env.PCA_API_KEY
         });
     }
 })
