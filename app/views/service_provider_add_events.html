@@ -148,9 +148,11 @@
 
 {% endcall %}
 
+<div class="js-form-add-another" data-form-add-another-noun="cost">
 {% call govukFieldset({
+    classes : "js-form-add-another__instance",
     legend: {
-        text: "Costs",
+        html: "Costs <span class=\"js-form-add-another__number\">1</span>",
         classes: "govuk-fieldset__legend--m",
         isPageHeading: false
     }
@@ -219,7 +221,7 @@
     }
 }) }}
 {% endcall %}
-
+</div>
 {% endcall %}
 </div>
 

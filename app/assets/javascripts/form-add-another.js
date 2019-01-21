@@ -15,22 +15,23 @@
         if(noun == null) {
             noun = 'item';
         }
-        addAddAnotherButton($wrapper, noun);
-        $wrapper.on('click', '.js-form-add-another__button', function(e) {
+        var $button = addAddAnotherButton($wrapper, noun);
+        $button.on('click', function(e) {
             e.preventDefault();
-            addAnotherInstance($(this), $wrapper);
+            addAnotherInstance($button, $wrapper);
         });
     }
     
     var addAddAnotherButton = function($wrapper, noun) {
-        var button = '<button class="js-form-add-another__button govuk-button">Add another ' + noun + '</button>';
-        $wrapper.append(button);
+        var $button = $('<button class="js-form-add-another__button govuk-button">Add another ' + noun + '</button>');
+        $wrapper.append($button);
+        return $button;
     }
     
     var addAnotherInstance = function($button, $wrapper) {
-        var $instance = $wrapper.find('.js-form-add-another__instance').last();
+        var $instance = $wrapper.find('> .js-form-add-another__instance').last();
         var $clone = $instance.clone();
-        var $number = $clone.find('.js-form-add-another__number');
+        var $number = $clone.find('.js-form-add-another__number').first();
         var newNumber = $number.text().incrementNumber();
         $clone = incrementNameAttributes($clone, newNumber);
         $number.text(newNumber);
@@ -38,7 +39,8 @@
     }
 
     var incrementNameAttributes = function($clone, newNumber) {
-        $clone.find("[name]").each(function() {
+        var fields = $clone.find('[name]').not('.js-form-add-another__instance [name]');
+        fields.each(function() {
             var $this = $(this);
             var name = $this.attr('name');
             var newName = name.replace(/\d+/, newNumber);
