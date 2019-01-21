@@ -1,19 +1,21 @@
 
 <div class="govuk-grid-row">
 {{ govukDateInput({
+  id: "events[1][start-date]",
   namePrefix: "events[1][start-date]",
   formGroup: {
-      classes: "govuk-grid-column-one-half"
+    classes: "govuk-grid-column-one-half"
   },
   fieldset: {
-      legend: {
-          text: "Start date",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--s"
-      }
+    legend: {
+      text: "Start date",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
   }
 }) }}
 {{ govukDateInput({
+  id: "events[1][end-date]",
   namePrefix: "events[1][end-date]",
   formGroup: {
       classes: "govuk-grid-column-one-half"
@@ -38,6 +40,7 @@
       classes: "govuk-!-font-weight-bold"
   },
   type: 'time',
+  id: "events[1][start-time]",
   name: "events[1][start-time]",
   attributes: {
       "data-hj-whitelist": ""
@@ -53,6 +56,7 @@
       classes: "govuk-!-font-weight-bold"
   },
   type: 'time',
+  id: "events[1][end-time]",
   name: "events[1][end-time]",
   attributes: {
       "data-hj-whitelist": ""

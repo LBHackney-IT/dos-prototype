@@ -104,19 +104,199 @@
 </div>
 <div class="js-conditional-fields__fields" data-conditional-fields-for="daily">
     <div class="js-generate-dates" data-generate-dates="daily">
+        <p>Enter the first and last date this event occurs.</p>
         {% include 'includes/date-and-time.html' %}
         <div class="js-generate-dates__container"></div>
     </div>
 </div>
 <div class="js-conditional-fields__fields" data-conditional-fields-for="weekly">
     <div class="js-generate-dates" data-generate-dates="weekly">
+        <p>Enter the first and last date this event occurs.</p>
         {% include 'includes/date-and-time.html' %}
+        {{ govukCheckboxes({
+            classes: "govuk-checkboxes--inline",
+            idPrefix: "events[1][day-of-week]",
+            name: "events[1][day-of-week]",
+            fieldset: {
+                legend: {
+                text: "Day",
+                classes: "govuk-fieldset__legend--s"
+                }
+            },
+            items: [
+            {
+                value: "Monday",
+                text: "Monday"
+            },
+            {
+                value: "Tuesday",
+                text: "Tuesday"
+            },
+            {
+                value: "Wednesday",
+                text: "Wednesday"
+            },
+            {
+                value: "Thursday",
+                text: "Thursday"
+            },
+            {
+                value: "Friday",
+                text: "Friday"
+            },
+            {
+                value: "Saturday",
+                text: "Saturday"
+            },
+            {
+                value: "Sunday",
+                text: "Sunday"
+            }
+            ]
+        }) }}
         <div class="js-generate-dates__container"></div>
     </div>
 </div>
 <div class="js-conditional-fields__fields" data-conditional-fields-for="monthly">
     <div class="js-generate-dates" data-generate-dates="monthly">
+        <p>Enter the first and last date this event occurs.</p>
         {% include 'includes/date-and-time.html' %}
+        {{ govukSelect({
+            idPrefix: "events[1][date-ofmonth]",
+            name: "events[1][date-ofmonth]",
+            label: {
+                text: "Date of the month"
+            },
+            items: [
+                {
+                value: "1st",
+                text: "1st"
+                },
+                {
+                value: "2nd",
+                text: "2nd"
+                },
+                {
+                value: "3rd",
+                text: "3rd"
+                },
+                {
+                value: "4th",
+                text: "4th"
+                },
+                {
+                value: "5th",
+                text: "5th"
+                },
+                {
+                value: "6th",
+                text: "6th"
+                },
+                {
+                value: "7th",
+                text: "7th"
+                },
+                {
+                value: "8th",
+                text: "8th"
+                },
+                {
+                value: "9th",
+                text: "9th"
+                },
+                {
+                value: "10th",
+                text: "10th"
+                },
+                {
+                value: "11th",
+                text: "11th"
+                },
+                {
+                value: "12th",
+                text: "12th"
+                },
+                {
+                value: "13th",
+                text: "13th"
+                },
+                {
+                value: "14th",
+                text: "14th"
+                },
+                {
+                value: "15th",
+                text: "15th"
+                },
+                {
+                value: "16th",
+                text: "16th"
+                },
+                {
+                value: "17th",
+                text: "17th"
+                },
+                {
+                value: "18th",
+                text: "18th"
+                },
+                {
+                value: "19th",
+                text: "19th"
+                },
+                {
+                value: "20th",
+                text: "20th"
+                },
+                {
+                value: "21st",
+                text: "21st"
+                },
+                {
+                value: "22nd",
+                text: "22nd"
+                },
+                {
+                value: "23rd",
+                text: "23rd"
+                },
+                {
+                value: "24th",
+                text: "24th"
+                },
+                {
+                value: "25th",
+                text: "25th"
+                },
+                {
+                value: "26th",
+                text: "26th"
+                },
+                {
+                value: "27th",
+                text: "27th"
+                },
+                {
+                value: "28th",
+                text: "28th"
+                },
+                {
+                value: "29th",
+                text: "29th"
+                },
+                {
+                value: "30th",
+                text: "30th"
+                },
+                {
+                value: "31st",
+                text: "31st"
+                }
+            ],
+            attributes: {
+                "data-hj-whitelist": ""
+            }
+        }) }}
         <div class="js-generate-dates__container"></div>
     </div>
 </div>
