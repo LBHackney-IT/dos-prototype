@@ -27,6 +27,13 @@
 }) }}
 
 
+    {% if serviceTypes %}
+    {{ categoriesSelect({
+        items: serviceTypes
+    }) }}
+    {% endif %}
+
+
     {{ govukTextarea({
     name: "org-description",
     id: "org-description",

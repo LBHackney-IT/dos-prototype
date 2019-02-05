@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const categories = require('./data/categories.json')
 const cheerio = require('cheerio')
+const Airtable = require('airtable')
+const async = require('async')
 
 // Add your routes here - above the module.exports line
 router.all('/data-listing', function (req, res) {
@@ -41,28 +43,41 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
     var steps = 'four';
     var backUrl = getPreviousStepUrl(step);
     var formData = req.body;
-    if(formData['facebook-url'] && formData['facebook-url'] !== '') {
-        scrapeFacebook(formData['facebook-url'], function(facebookData){
-            res.render('service_submit_provider_' + step, 
-            {
-                'step' : step, 
-                'steps' : steps,
-                'backUrl' : backUrl,
-                'formData': formData,
-                'facebookData' : facebookData,
-                'pcaKey' : process.env.PCA_API_KEY
-            });    
-        });
-    } else {
-        res.render('service_submit_provider_' + step, 
-        {
-            'step' : step, 
-            'steps' : steps,
-            'backUrl' : backUrl,
-            'formData': formData,
-            'pcaKey' : process.env.PCA_API_KEY
-        });
-    }
+    var localVars = {
+        'step' : step, 
+        'steps' : steps,
+        'backUrl' : backUrl,
+        'formData': formData,
+        'pcaKey' : process.env.PCA_API_KEY
+    };
+    async.series([
+        function facebook(nextFunction) {
+            if(formData['facebook-url'] && formData['facebook-url'] !== '') {
+                scrapeFacebook(formData['facebook-url'], function(facebookData){
+                    localVars['facebookData'] = facebookData;
+                    nextFunction();
+                });
+            } else {
+                nextFunction();
+            }
+        },
+        function stepTwoData(nextFunction) {
+            if(step == 'two') {
+                getAirtableData('Service Types', function(serviceTypes) {
+                    localVars['serviceTypes'] = createTaxonomyHeirachy(serviceTypes);
+                    nextFunction();
+                });
+            } else {
+                nextFunction();
+            }
+        }, function(err){
+            if( err ) {
+                console.log('Error: '+err);
+            }
+            console.log(localVars['serviceTypes']);
+            res.render('service_submit_provider_' + step, localVars);
+        }
+    ]);
 })
 
 router.all('/service-provider-actions/add-service', function (req, res) {
@@ -149,6 +164,58 @@ getPreviousStepUrl = function(currentStep) {
             return '/service-provider-actions';
     }
 }
+
+getAirtableData = function(table = 'Service Types', callback, baseKey = 'app0B5XjIQSmt8wIo', view = "Grid view") {
+    var results = [];
+    var base = new Airtable({apiKey: process.env.AIRTABLE_API}).base(baseKey);
+    base(table).select({
+        view: view
+    }).eachPage(function page(records, fetchNextPage) {
+        records.forEach(function(record) {
+            results.push(record);
+        });
+    
+        fetchNextPage();
+    
+    }, function done(err) {
+        if (err) { console.error(err); callback(err); }
+        callback(results);
+    });
+}
+
+createTaxonomyHeirachy = function(airtableData) {
+    var items = [];
+    airtableData.forEach(function(row) {
+        var fields = row.fields;
+        // Is a top-level item
+        if(typeof fields['Parent identifiers'] == 'undefined') {
+            var term = new Term(row.id, fields, airtableData);
+            items.push(term);
+        }
+    })
+    return items;
+}
+
+Term = function(id, fields, airtableData) {
+    this.id = id;
+    this.text = fields['Label'];
+    this.children = getChildTerms(this.id, airtableData);  
+}
+
+getChildTerms = function(parentId, airtableData) {
+    var children = [];
+    airtableData.forEach(function(row) {
+        var fields = row.fields;
+        if(typeof fields['Parent identifiers'] !== 'undefined' && 
+        fields['Parent identifiers'].includes(parentId)) {
+            // console.log(fields['Parent identifiers'] + ' vs ' + parentId);
+            var term = new Term(row.id, fields, airtableData);
+            children.push(term);
+        }
+    });
+    return children;
+}
+
 
 var providerNavigation = [
     {
