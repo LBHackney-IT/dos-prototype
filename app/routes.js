@@ -74,14 +74,17 @@ router.all('/service-provider-actions/submit/:step', function (req, res) {
             if( err ) {
                 console.log('Error: '+err);
             }
-            console.log(localVars['serviceTypes']);
             res.render('service_submit_provider_' + step, localVars);
         }
     ]);
 })
 
 router.all('/service-provider-actions/add-service', function (req, res) {
-    res.render('service_provider_add_service');
+    var localVars = {};
+    getAirtableData('Eligibility', function(eligibility) {
+        localVars['eligibility'] = createTaxonomyHeirachy(eligibility);
+        res.render('service_provider_add_service', localVars);
+    });
 })
 
 router.all('/service-provider-actions/add-events', function (req, res) {
@@ -208,7 +211,6 @@ getChildTerms = function(parentId, airtableData) {
         var fields = row.fields;
         if(typeof fields['Parent identifiers'] !== 'undefined' && 
         fields['Parent identifiers'].includes(parentId)) {
-            // console.log(fields['Parent identifiers'] + ' vs ' + parentId);
             var term = new Term(row.id, fields, airtableData);
             children.push(term);
         }

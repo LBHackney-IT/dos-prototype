@@ -25,6 +25,15 @@
           "data-hj-whitelist": ""
         }
   }) }}
+
+
+  {% if eligibility %}
+    {{ categoriesSelect(
+        title = 'Eligibilities',
+        items = eligibility
+    ) }}
+  {% endif %}
+
   
   {{ govukTextarea({
       label: {

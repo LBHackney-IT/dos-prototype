@@ -1,10 +1,10 @@
-{% macro categoriesSelect(items) %}
+{% macro categoriesSelect(title = "Categories", items) %}
 <div class="govuk-form-group">
     <label class="govuk-label" for="categories">
-        Categories
+        {{ title }}
     </label>
     <select class="js-select2 govuk-select" name="categories" multiple="multiple">
-        {% for item in items.items %}
+        {% for item in items %}
             {% if item.children|length %}
                 <optgroup label="{{ item.text }}">
                 {% for child in item.children %}
