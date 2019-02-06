@@ -34,6 +34,26 @@
     ) }}
   {% endif %}
 
+    {{ govukSelect({
+        name: "service-contact",
+        label: {
+            text: "Public contact details"
+        },
+        items: [
+        {
+            value: "org-contact",
+            text: "Organisation contact"
+            },
+            {
+                value: "add-another-contact",
+                text: "Add another contact"
+            }
+        ],
+        attributes: {
+            "data-hj-whitelist": ""
+        }
+    }) }}
+
   
   {{ govukTextarea({
       label: {

@@ -3,7 +3,7 @@
     <label class="govuk-label" for="categories">
         {{ title }}
     </label>
-    <select class="js-select2 govuk-select" name="categories" multiple="multiple">
+    <select class="js-select2 govuk-select" name="{{title|lower}}" multiple="multiple">
         {% for item in items %}
             {% if item.children|length %}
                 <optgroup label="{{ item.text }}">
