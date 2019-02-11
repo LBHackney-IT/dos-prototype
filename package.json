@@ -50,7 +50,8 @@
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
     "url-exists": "^1.0.3",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "wappalyzer": "^5.6.3"
   },
   "greenkeeper": {
     "ignore": [

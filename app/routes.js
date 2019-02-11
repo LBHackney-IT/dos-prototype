@@ -4,6 +4,9 @@ const categories = require('./data/categories.json')
 const cheerio = require('cheerio')
 const Airtable = require('airtable')
 const async = require('async')
+const checkWebTech = require('./lib/check-web-tech.js')
+const fs = require('fs')
+process.setMaxListeners(0);
 
 // Add your routes here - above the module.exports line
 router.all('/data-listing', function (req, res) {
@@ -123,6 +126,59 @@ router.all('/api/url-exists', function (req, res) {
 
 })
 
+router.all('/check-web-tech', function (req, res) {
+    let localVars = {};
+    let websites;
+    let wappData = [];
+    async.series([
+        function getWebsites(nextFunction) {
+            getOrgWebsites(function(results) {
+                websites = results;
+                nextFunction();
+            });
+        },
+        function wappalyzer(nextFunction) {
+            localVars.websites = [];
+            async.eachLimit(websites, 1, function(website, thankUNextWebsite) {
+
+                // Perform operation on file here.
+                console.log('Processing website ' + website);
+                
+                checkWebTech.checkUrl(website, function(data, error){
+                    localVars.websites.push(data);
+                    console.log('Website processed');
+                    thankUNextWebsite();
+                });    
+            }, function(err) {
+                // if any of the website processing produced an error, err would equal that error
+                if( err ) {
+                  // One of the iterations produced an error.
+                  // All processing will now stop.
+                  console.log('A website failed to process');
+                } else {
+                    console.log('All websites have been processed successfully');
+                    nextFunction();
+                }
+            });
+        }, function(err){
+            if( err ) {
+                console.log('Error: '+err);
+            }
+            // console.log(localVars.websites);
+            fs.writeFile("/tmp/data.json", JSON.stringify(localVars.websites), function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+                console.log("The file was saved!");
+            }); 
+            res.render('web_tech_check', localVars);
+            // res.send(localVars.websites);
+        }
+    ]);
+})
+
+// Todo: Move these helper functions to lib
+
 scrapeFacebook = function(url, cb) {
     var request = require('request');
     const $ = require('cheerio');
@@ -184,6 +240,16 @@ getAirtableData = function(table = 'Service Types', callback, baseKey = 'app0B5X
         if (err) { console.error(err); callback(err); }
         callback(results);
     });
+}
+
+getOrgWebsites = function(callback) {
+    let websites = [];
+    getAirtableData('Imported table', function(records) {
+        records.forEach(function(record) {
+            websites.push(record.fields['website'])
+        });
+        callback(websites);
+    }, 'appOV2Q1E69YFrmmY', 'Just websites');
 }
 
 createTaxonomyHeirachy = function(airtableData) {

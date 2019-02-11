@@ -1,0 +1,20 @@
+{% extends "layout_hackney.html" %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">Web tech check</h1>
+{% for website in websites %}
+  <article>
+  {% for url, meta in website.urls %}
+  <p>
+    <a href="{{url}}" target="_blank">{{url}}</a> <strong>Status: {{ meta.status }} </strong>
+  </p>
+  {% endfor %}
+  <p>
+    {% for application in website.applications %}
+      {{ application.name }}, 
+    {% endfor %}
+  </p>
+  <hr />
+  </article>
+{% endfor %}
+{% endblock %}
