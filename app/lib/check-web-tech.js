@@ -4,11 +4,11 @@ const Browser = require('wappalyzer/browsers/zombie');
 exports.checkUrl = function(url, callback) {
   const options = {
     debug: false,
-    delay: 500,
-    maxDepth: 3,
+    delay: 0,
+    maxDepth: 1,
     maxUrls: 1,
-    maxWait: 5000,
-    recursive: true,
+    maxWait: 10000,
+    recursive: false,
     userAgent: 'Wappalyzer',
     htmlMaxCols: 2000,
     htmlMaxRows: 2000,
@@ -19,7 +19,7 @@ exports.checkUrl = function(url, callback) {
     callback(json, null);
   })
   .catch(error => {
-    console.log(error);
+    console.log('Error:' + error);
     callback(null, error);
 });
 }

@@ -129,7 +129,6 @@ router.all('/api/url-exists', function (req, res) {
 router.all('/check-web-tech', function (req, res) {
     let localVars = {};
     let websites;
-    let wappData = [];
     async.series([
         function getWebsites(nextFunction) {
             getOrgWebsites(function(results) {
@@ -140,14 +139,34 @@ router.all('/check-web-tech', function (req, res) {
         function wappalyzer(nextFunction) {
             localVars.websites = [];
             async.eachLimit(websites, 1, function(website, thankUNextWebsite) {
-
+                const url = website.fields['website'];
                 // Perform operation on file here.
-                console.log('Processing website ' + website);
+                console.log('Processing website ' + url);
                 
-                checkWebTech.checkUrl(website, function(data, error){
-                    localVars.websites.push(data);
-                    console.log('Website processed');
-                    thankUNextWebsite();
+                checkWebTech.checkUrl(url, function(data, error){
+                    // console.log(data);
+                    var firstUrl = Object.keys(data.urls)[0];
+                    var url = data.urls[firstUrl];
+                    if(url.error) {
+                        console.log('Error: ' + url.error.message);
+                    }
+                    let tech = data.applications.map(function(app) {
+                        return app['name'];
+                    });
+                    tech = tech.join();
+                    if (tech == null){
+                        tech = 'none found';
+                    }
+                    var base = new Airtable({apiKey: process.env.AIRTABLE_API}).base('appOV2Q1E69YFrmmY');
+                    base('Imported table').update(website.id, {
+                        "Tech": tech,
+                        "Website status": url.status.toString()
+                      }, function(err, record) {
+                          if (err) { console.error(err); return; }
+                          console.log('Website processed');
+                          console.log(record.get('Tech') + ' + ' + record.get('Website status'));
+                          thankUNextWebsite();
+                      });                      
                 });    
             }, function(err) {
                 // if any of the website processing produced an error, err would equal that error
@@ -164,15 +183,8 @@ router.all('/check-web-tech', function (req, res) {
             if( err ) {
                 console.log('Error: '+err);
             }
-            // console.log(localVars.websites);
-            fs.writeFile("/tmp/data.json", JSON.stringify(localVars.websites), function(err) {
-                if(err) {
-                    return console.log(err);
-                }
-                console.log("The file was saved!");
-            }); 
-            res.render('web_tech_check', localVars);
-            // res.send(localVars.websites);
+            // res.render('web_tech_check', localVars);
+            res.send('Done');
         }
     ]);
 })
@@ -245,11 +257,8 @@ getAirtableData = function(table = 'Service Types', callback, baseKey = 'app0B5X
 getOrgWebsites = function(callback) {
     let websites = [];
     getAirtableData('Imported table', function(records) {
-        records.forEach(function(record) {
-            websites.push(record.fields['website'])
-        });
-        callback(websites);
-    }, 'appOV2Q1E69YFrmmY', 'Just websites');
+        callback(records);
+    }, 'appOV2Q1E69YFrmmY', 'Just websites no tech no 404');
 }
 
 createTaxonomyHeirachy = function(airtableData) {
